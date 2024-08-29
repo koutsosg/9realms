@@ -56,12 +56,10 @@ const SortableItem: React.FC<SortableItemProps> = ({
     backgroundColor: itemId === activeId ? "transparent" : "",
     border: itemId === activeId ? "3px dashed #4D508A" : "",
     opacity:
-      calculateOpacity() /* isDragging ? (itemId !== activeId ? 0.5 : 0) : 1 */,
+      calculateOpacity() /* isDragging ? (itemId !== activeId ? 0.5 : 0) : 1 alternative method for calculate opacity  */,
     ...style,
   };
-  /*   const innerStyle: React.CSSProperties = {
-    opacity: itemId === activeId ? 0 : 1,
-  }; */
+
   return (
     <div ref={setNodeRef} style={draggedStyle} {...attributes} {...listeners}>
       {content}
@@ -71,12 +69,12 @@ const SortableItem: React.FC<SortableItemProps> = ({
 
 interface DndListComponentProps {
   items: ItemType[];
-  renderItem: (item: ItemType) => React.ReactNode;
+  children: (item: ItemType) => React.ReactNode;
 }
 
 const DndListComponent: React.FC<DndListComponentProps> = ({
   items,
-  renderItem,
+  children,
 }) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -92,9 +90,6 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
     setIsDragging(false);
     setActiveId(null);
   };
-  /*  const renderItem = ({ item }: { item: ItemType }) => (
-    <div style={{ padding: 8, border: "1px solid gray" }}>{item?.content}</div>
-  ); */
 
   return (
     <DndContext

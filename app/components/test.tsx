@@ -6,10 +6,16 @@ const Test = () => {
     { id: 2, content: "item-2" },
     { id: 3, content: "item-3" },
   ];
-  const renderItem = (item: any) => (
-    <div style={{ padding: 8, border: "1px solid gray" }}>{item?.content}</div>
-  );
 
-  return <DndListComponent items={items} renderItem={renderItem} />;
+  return (
+    <DndListComponent items={items}>
+      {(item) => (
+        <div style={{ padding: 8, border: "1px solid gray" }}>
+          <div>{item.id}</div>
+          <div>{item.content}</div>
+        </div>
+      )}
+    </DndListComponent>
+  );
 };
 export default Test;
