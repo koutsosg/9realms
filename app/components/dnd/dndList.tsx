@@ -46,7 +46,7 @@ const SortableItem: React.FC<SortableItemProps> = ({
       if (itemId !== activeId) {
         return 0.5;
       }
-      return 0;
+      return 1; // make this to 0 incase of drag overlay
     }
     return 1;
   };
@@ -54,7 +54,7 @@ const SortableItem: React.FC<SortableItemProps> = ({
     transform: CSS.Translate.toString(transform),
     transition,
     backgroundColor: itemId === activeId ? "transparent" : "",
-    border: itemId === activeId ? "3px dashed #4D508A" : "",
+
     opacity:
       calculateOpacity() /* isDragging ? (itemId !== activeId ? 0.5 : 0) : 1 alternative method for calculate opacity  */,
     ...style,
@@ -91,6 +91,7 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
     setActiveId(null);
   };
 
+  console.log(activeId);
   return (
     <DndContext
       id={contextId}
@@ -105,16 +106,25 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
             <SortableItem
               key={item?.id}
               itemId={item?.id}
-              content={renderItem(item)}
+              content={children(item)}
               activeId={activeId}
               isDragging={isDragging}
             />
           );
         })}
       </SortableContext>
-      <DragOverlay>
-        {isDragging ? <div>Dragging item {activeId}</div> : null}
-      </DragOverlay>
+      {/**** in case of drag overlay *****/}
+      {/*    <DragOverlay>
+        {isDragging && activeItem ? (
+          <SortableItem
+            itemId={activeItem.id}
+            content={children(activeItem)}
+            activeId={activeId}
+            isDragging={isDragging}
+            style={{ transform: "none", transition: "none", opacity: 1 }} // Override transform and transition for the overlay
+          />
+        ) : null}
+      </DragOverlay> */}
     </DndContext>
   );
 };
