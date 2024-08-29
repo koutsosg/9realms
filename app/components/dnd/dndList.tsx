@@ -18,11 +18,8 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useId, useState } from "react";
+import { ActionType, ItemType } from "./dndTypes";
 
-interface ItemType {
-  id: UniqueIdentifier;
-  content: string;
-}
 interface SortableItemProps {
   itemId: UniqueIdentifier;
   content: React.ReactNode;
@@ -70,11 +67,13 @@ const SortableItem: React.FC<SortableItemProps> = ({
 interface DndListComponentProps {
   items: ItemType[];
   children: (item: ItemType) => React.ReactNode;
+  dispatch: React.Dispatch<ActionType>;
 }
 
 const DndListComponent: React.FC<DndListComponentProps> = ({
   items,
   children,
+  dispatch,
 }) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -87,6 +86,17 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      const oldIndex = items.findIndex((item) => item.id === active.id);
+      const newIndex = items.findIndex((item) => item.id === over?.id);
+
+      const newItems = [...items];
+      const [movedItem] = newItems.splice(oldIndex, 1);
+      newItems.splice(newIndex, 0, movedItem);
+
+      dispatch({ type: "REORDER_ITEMS", payload: newItems });
+    }
     setIsDragging(false);
     setActiveId(null);
   };
