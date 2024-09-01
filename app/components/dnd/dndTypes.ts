@@ -5,4 +5,4 @@ export interface ItemType {
   [key: string]: any;
 }
 
-export type ActionType = { type: "REORDER_ITEMS"; payload: any };
+export type ActionType = { type: "REORDER_ITEMS"; payload: ItemType[] };

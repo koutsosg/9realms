@@ -1,0 +1,206 @@
+[
+  {
+    "id": "10",
+    "username": "geokou",
+    "created": "",
+    "updated": "",
+    "email": "geokou@gmail.com",
+    "city_country": "athens/greece",
+    "name": "george",
+    "lastname": "koutsos",
+    "title": "Creative Junior Frontend Developer | React Ecosystem Enthusiast"
+  },
+  {
+    "id": "2",
+    "name": "george",
+    "lastname": "koutsos",
+    "created": "",
+    "updated": "",
+    "email": "geokou@gmail.com",
+    "city_country": "athens/greece",
+    "title": "Creative Junior Frontend Developer | React Ecosystem Enthusiast",
+
+    "description": {
+      "id": "5434234243234",
+      "type": "paragraph",
+      "texts": {
+        "id": "231234234232",
+        "text": "Self-motivated and adaptable Junior Web Developer with a strong foundation in React, Next.js, React Native, and various web technologies. Seeking preferably a remote position that offers flexibility and the opportunity to contribute to challenging projects globally. Committed to continuous learning and eager to leverage my technical skills in a dynamic team environment"
+      }
+    },
+    "cv_sections": [
+      {
+        "id": "12",
+        "title": "work experience",
+        "jobs": [
+          {
+            "id": "123",
+            "company": "wildwildweb",
+            "position": "React Ecosystem Developer",
+            "city": "Athens/greece",
+            "date_start": "oct 2022",
+            "date_end": "nov 2022",
+            "description": {
+              "id": "543423424",
+              "type": "paragraph",
+              "texts": {
+                "id": "2312234234",
+                "text": "1234Effectively communicated with customers to understand their needs."
+              }
+            }
+          },
+          {
+            "id": "122",
+            "company": "OMG",
+            "position": "React Developer",
+            "city": "Athens/greece",
+            "date_start": "oct 2022",
+            "date_end": "nov 2022",
+            "description": {
+              "id": "54343242",
+              "type": "paragraph",
+              "texts": {
+                "id": "231223424",
+                "text": "1234234Effectively communicated with customers to understand their needs."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "22123",
+        "title": "certifications",
+        "courses": [
+          {
+            "id": "223",
+            "course": "Full-Stack Web Development with React (Specialization)",
+            "institution": "The Hong Kong University of Science and Technology / Coursera",
+            "verification": "https//:wildweb.gr/certifications?cer=123",
+            "date": "Nov 2022",
+            "description": {
+              "id": "5434345",
+              "type": "paragraph",
+              "texts": {
+                "id": "231254",
+                "text": "1234E5345ffectively communicated with customers to understand their needs."
+              }
+            }
+          },
+          {
+            "id": "224",
+            "course": "HTML, CSS and JavaScript for Web Developers",
+            "institution": "Johns Hopkins University / Coursera",
+            "verification": "https//:wildweb.gr/certifications?cer=1232",
+            "date": "Oct 2022",
+            "description": {
+              "id": "54343",
+              "type": "paragraph",
+              "texts": {
+                "id": "23124",
+                "text": "123asasd4Effectively communicated with customers to understand their needs."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "1223",
+        "title": "other experience",
+        "jobs": [
+          {
+            "id": "12398",
+            "company": "PROTERGIA / MITILINEOS SA",
+            "position": "Energy Advisor / B2C Commercial Division",
+            "city": "Athens/greece",
+            "date_start": "oct 2022",
+            "date_end": "nov 2022",
+            "description": {
+              "id": "543",
+              "type": "bullets",
+              "texts": [
+                {
+                  "id": "2314",
+                  "text": "Effectively communicated with customers to understand their needs."
+                },
+                {
+                  "id": "2312",
+                  "text": "1234Effectively communicated with customers to understand their needs."
+                }
+              ]
+            }
+          },
+          {
+            "id": "122789",
+            "company": "OMG",
+            "position": "React Developer",
+            "city": "Athens/greece",
+            "date_start": "oct 2022",
+            "date_end": "nov 2022",
+            "description": {
+              "id": "5434",
+              "type": "paragraph",
+              "texts": {
+                "id": "2312",
+                "text": "1234Effectively communicated with customers to understand their needs."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "title": "education",
+        "institutions": [
+          {
+            "id": "123",
+            "institution": "Technological Education Institute of Piraeus",
+            "degree": { "id": 1, "type": "B.Sc" },
+            "field_of_study": "Computer Engineering",
+            "city": "Athens/greece",
+            "date_start": "2010",
+            "date_end": "2015(Incomplete)",
+            "description": {
+              "id": "54342",
+              "type": "paragraph",
+              "texts": {
+                "id": "23121",
+                "text": "1234Effectively communicated with customers to understand their needs."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "1212",
+        "title": "skills",
+        "categories": [
+          {
+            "id": "01",
+            "title": "Languages",
+            "languages": [
+              { "id": "001", "title": "greek", "level": "Native" },
+              {
+                "id": "002",
+                "title": "English",
+                "level": "Limited Working Proficiency"
+              }
+            ]
+          },
+          {
+            "id": "02",
+            "title": "dev tech",
+            "techs": [
+              { "id": "003", "title": "React", "level": "3" },
+              { "id": "004", "title": "Wordpress", "level": "2" }
+            ]
+          },
+          {
+            "id": "02",
+            "title": "soft skills",
+            "non_dev_tech": "...workin progress"
+          }
+        ]
+      }
+    ]
+  }
+]
