@@ -101,7 +101,6 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
     setActiveId(null);
   };
 
-  console.log(activeId);
   return (
     <DndContext
       id={contextId}
