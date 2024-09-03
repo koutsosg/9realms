@@ -1,7 +1,7 @@
 import { useReducer } from "react";
-import DndListComponent from "./dnd/dndList";
-import { itemsReducer } from "./dnd/dndReducer";
-import { ItemType, ActionType } from "./dnd/dndTypes";
+import DndListComponent from "@/app/components/dnd/dndList";
+import { itemsReducer } from "@/app/components/dnd/dndReducer";
+import { ItemType } from "@/app/components/dnd/dndTypes";
 
 const initialItems: ItemType[] = [
   {

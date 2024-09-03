@@ -18,7 +18,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useId, useState } from "react";
-import { ActionType, ItemType } from "./dndTypes";
+import { ActionType, ItemType } from "@/app/components/dnd/dndTypes";
 
 interface SortableItemProps {
   itemId: UniqueIdentifier;

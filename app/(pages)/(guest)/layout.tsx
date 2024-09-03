@@ -1,8 +1,4 @@
-const AuthLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return <main>{children}</main>;
 };
 export default AuthLayout;

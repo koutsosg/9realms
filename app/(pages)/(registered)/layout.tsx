@@ -1,15 +1,12 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-const DefaultLayout = async ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+const DefaultLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession();
   if (!session) {
-    redirect("/login");
+    redirect("/cv_view");
   }
+
   return (
     <main className="">
       <div className="">{children}</div>

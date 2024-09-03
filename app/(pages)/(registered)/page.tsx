@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       <Test />
-      <button onClick={() => signOut({ callbackUrl: "/login" })}>
+      <button onClick={() => signOut({ callbackUrl: "/cv_view" })}>
         <span>Signout</span>
       </button>
     </main>
