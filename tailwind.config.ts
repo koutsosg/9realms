@@ -8,6 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        spin: "spin 1s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      borderWidth: {
+        spinner: "4px",
+      },
+
       backgroundImage: {
         /*      "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -23,6 +36,8 @@ const config: Config = {
         secondary_2: "#F8F4F9",
         secondary_3: "#CED3DC",
         secondary_4: "#FCF7F8",
+        "spinner-background": "rgba(0, 0, 0, 0.1)",
+        "spinner-color": "#fff",
       },
     },
   },

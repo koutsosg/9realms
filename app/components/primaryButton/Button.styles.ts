@@ -4,12 +4,9 @@ import {
 } from "@/app/components/primaryButton/Button.types";
 
 export const buttonStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-primary_2/80 text-white hover:bg-primary_2 focus:outline-none focus:ring-2 focus:ring-blue-500",
-  secondary:
-    "bg-primary_1/80 text-black hover:bg-primary_1 focus:outline-none focus:ring-2 focus:ring-gray-500",
-  danger:
-    "bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500",
+  primary: "bg-blue-500 text-white hover:bg-blue-600",
+  secondary: "bg-gray-500 text-white hover:bg-gray-600",
+  danger: "bg-red-500 text-white hover:bg-red-600",
 };
 
 export const sizeStyles: Record<ButtonSize, string> = {

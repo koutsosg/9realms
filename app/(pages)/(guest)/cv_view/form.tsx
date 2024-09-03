@@ -46,14 +46,11 @@ const Form = () => {
         <div>
           <input name="password" type="password" />
 
-          <label htmlFor={"password"}>pasword</label>
+          <label htmlFor={"password"}>password</label>
         </div>
-        <Button type="submit" isLoading={isLoading} className="bg-primary_1">
+        <Button loadingText="test" isLoading={isLoading}>
           login
         </Button>
-        {/* <button type="submit" disabled={isLoading}>
-          login
-        </button> */}
       </form>
     </>
   );
