@@ -39,36 +39,19 @@ const Form = () => {
   };
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-3 sm:gap-6 mt-5 sm:wide:mt-5 sm:wide:gap-3 2xl:mt-20"
-      >
-        <div className="inputGroup relative text-base text-polo-900">
+      <form onSubmit={handleSubmit}>
+        <div>
           <input name="email" />
 
-          <label
-            className="transition-all text-[10px] leading-none font-semi-bold text-polo-900 pointer-events-none absolute top-1/2 inset-x-6 -translate-y-1/2 peer-focus:top-1/4"
-            htmlFor={"username"}
-          >
-            email
-          </label>
+          <label htmlFor={"username"}>email</label>
         </div>
 
-        <div className="inputGroup relative text-base text-polo-900">
+        <div>
           <input name="password" type="password" />
 
-          <label
-            className="transition-all text-[10px] leading-none font-semi-bold text-polo-900 pointer-events-none absolute top-1/2 inset-x-6 -translate-y-1/2 peer-focus:top-1/4"
-            htmlFor={"password"}
-          >
-            pasword
-          </label>
+          <label htmlFor={"password"}>pasword</label>
         </div>
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="px-8 py-4 bg-primary text-white text-sm w-full my-3 sm:my-6 rounded-lg font-semibold disabled:opacity-50"
-        >
+        <button type="submit" disabled={isLoading}>
           login
         </button>
       </form>
