@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={isLoading || props.disabled}
       {...props}
     >
-      {!isLoading ? (
+      {isLoading ? (
         <div className="relative flex items-center justify-center">
           <Spinner size="medium" color="#FFF" />
           <span className="sr-only">{loadingText}</span>

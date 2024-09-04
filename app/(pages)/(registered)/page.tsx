@@ -1,6 +1,6 @@
 "use client";
 import Test from "@/app/components/test";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import React from "react";
 
 export default function Home() {

@@ -1,35 +1,32 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import "next-auth";
+import { cookies } from "next/headers";
 
 const apiUrl = process.env.API_URL;
-import "next-auth";
 
 declare module "next-auth" {
   interface User {
     id?: string;
-    username?: string;
     name?: string | null;
     avatar?: null;
     email?: string;
-    lastname?: string;
-    city?: string;
-    country?: string;
-    verified?: boolean;
     created?: string;
     role?: string;
     cv?: string | null;
-    token?: string;
+    jwt?: string;
   }
 }
 export const options: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
   pages: {
     signIn: "/login",
     verifyRequest: `/login`,
     error: "/login",
   },
-  session: {
-    strategy: "jwt",
-  },
+
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -53,37 +50,36 @@ export const options: NextAuthOptions = {
         try {
           var reqHeaders = new Headers();
           reqHeaders.append("Content-Type", "application/json");
-          const response = await fetch(
-            `${apiUrl}collections/users/auth-with-password`,
-            {
-              method: "POST",
-              headers: reqHeaders,
-              body: JSON.stringify({
-                identity: credentials.email,
-                password: credentials.password,
-              }),
-            }
-          );
-
+          const response = await fetch(`${apiUrl}users/auth-with-password`, {
+            method: "POST",
+            headers: reqHeaders,
+            body: JSON.stringify({
+              identity: credentials.email,
+              password: credentials.password,
+            }),
+          });
           if (!response.ok) {
             throw new Error("Invalid credentials");
           }
 
-          const { token, record } = await response.json();
+          const { record, token: jwt } = await response.json();
+
+          cookies().set("jwt-token", jwt, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 30,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+          });
+
           return {
             id: record.id,
-            username: record.username,
+            name: record.name,
             email: record.email,
             avatar: record.avatar || null,
-            name: record.name,
-            lastname: record.lastname,
-            city: record.city,
-            country: record.country,
-            verified: record.verified,
             created: record.created,
             role: record.role,
             cv: record.cv || null,
-            token,
+            jwt,
           };
         } catch (error: any) {
           throw new Error(error.message || "Authentication failed");
@@ -93,26 +89,24 @@ export const options: NextAuthOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
-      console.log(user);
+    async jwt({ token, user, session, trigger }) {
+      if (trigger === "update" && session) {
+        return { ...token, ...session?.user };
+      }
+
       if (user) {
         return {
           ...token,
-          id: user.id,
           name: user.name,
           email: user.email,
-          username: user.username,
-          avatar: user.avatar,
-          lastname: user.lastname,
-          city: user.city,
-          country: user.country,
-          verified: user.verified,
+          picture: user.avatar,
           created: user.created,
           role: user.role,
           cv: user.cv,
-          token,
+          jwt: user.jwt,
         };
       }
+
       return token;
     },
     async session({ session, token }) {
@@ -120,19 +114,13 @@ export const options: NextAuthOptions = {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
-          username: token.username,
-          email: token.email,
-          avatar: token.avatar,
+          id: token.sub,
           name: token.name,
-          lastname: token.lastname,
-          city: token.city,
-          country: token.country,
-          verified: token.verified,
+          email: token.email,
+          image: token.picture,
           created: token.created,
           role: token.role,
           cv: token.cv,
-          token,
         },
       };
     },
