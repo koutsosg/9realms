@@ -1,23 +1,26 @@
 import React from "react";
 import { SpinnerProps } from "./Spinner.types";
 import { sizeStyles } from "./Spinner.styles";
+import classNames from "classnames";
 
 const Spinner: React.FC<SpinnerProps> = ({
   size = "medium",
   color = "white", // Default color
-  className,
+  extraClasses,
   ...props
 }) => {
-  // Define size classes based on the size prop
   const sizeClass = sizeStyles[size];
 
-  // Combine custom color and size with default spinner styles
-  const spinnerClass = `border-x-black/20 border-b-black/20 border-spinner rounded-full animate-spin ${sizeClass} ${className}`;
+  const spinnerClasses = classNames(
+    "border-black/20 border-spinner rounded-full animate-spin",
+    sizeClass,
+    extraClasses
+  );
 
   return (
     <div
       style={{ borderTopColor: color }}
-      className={spinnerClass}
+      className={spinnerClasses}
       {...props}
     ></div>
   );

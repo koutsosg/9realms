@@ -39,7 +39,6 @@ const Form = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <input name="email" />
-
           <label htmlFor={"username"}>email</label>
         </div>
 
@@ -48,7 +47,12 @@ const Form = () => {
 
           <label htmlFor={"password"}>password</label>
         </div>
-        <Button loadingText="test" isLoading={isLoading}>
+        <Button
+          variant="secondary"
+          size="medium"
+          isLoading={isLoading}
+          spinner={true}
+        >
           login
         </Button>
       </form>
