@@ -1,7 +1,7 @@
 import {
   ButtonVariant,
   ButtonSize,
-} from "@/app/components/primaryButton/Button.types";
+} from "@/app/components/Button/Button.types";
 
 export const buttonStyles: Record<ButtonVariant, string> = {
   primary: "bg-blue-500 text-white hover:bg-blue-600",

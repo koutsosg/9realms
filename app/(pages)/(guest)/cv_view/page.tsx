@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Form from "@/app/(pages)/(guest)/cv_view/form";
+import CvPreview from "./cvPreview";
 
 const LoginPage = async (): Promise<JSX.Element> => {
   const session = await getServerSession();
@@ -8,7 +9,12 @@ const LoginPage = async (): Promise<JSX.Element> => {
     redirect("/");
   }
 
-  return <Form />;
+  return (
+    <>
+      <Form />
+      <CvPreview />
+    </>
+  );
 };
 
 export default LoginPage;

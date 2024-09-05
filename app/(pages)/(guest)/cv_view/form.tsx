@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/app/components/primaryButton/Button";
+import Button from "@/app/components/Button/Button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";

@@ -50,7 +50,7 @@ export const options: NextAuthOptions = {
         try {
           var reqHeaders = new Headers();
           reqHeaders.append("Content-Type", "application/json");
-          const response = await fetch(`${apiUrl}users/auth-with-password`, {
+          const response = await fetch(`${apiUrl}/users/auth-with-password`, {
             method: "POST",
             headers: reqHeaders,
             body: JSON.stringify({
@@ -58,6 +58,7 @@ export const options: NextAuthOptions = {
               password: credentials.password,
             }),
           });
+
           if (!response.ok) {
             throw new Error("Invalid credentials");
           }
