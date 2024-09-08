@@ -1,18 +1,20 @@
 "use client";
+import { CVResponse, simplifyCVResponse } from "@/app/lib/utils/CvService";
 import { useEffect } from "react";
 
 const CvPreview = () => {
   useEffect(() => {
     const fetchCvData = async () => {
       try {
-        /* const cvId = "8ruortmj0vdvbjh"; */
         const response = await fetch(`/api/fetchCv`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch CV data");
         }
-        const cv = await response.json();
-        console.log(cv);
+        const result = await response.json();
+        const cv: CVResponse = await result.cv;
+        const simplifiedCV = simplifyCVResponse(cv);
+        console.log(simplifiedCV);
       } catch (err) {}
     };
 

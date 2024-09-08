@@ -44,7 +44,7 @@ export const fetchCvData = async () => {
   };
 
   const response = await fetch(
-    `${API_URL}/cvs/records/${cvId}?expand=cv_sections,cv_sections.jobs,cv_sections.education,cv_sections.certifications`,
+    `${API_URL}collections/cvs/records/${cvId}?expand=cv_sections,cv_sections.jobs,cv_sections.education,cv_sections.certifications,cv_sections.jobs.descriptions,cv_sections.jobs.descriptions.description_content,cv_sections.education.descriptions,cv_sections.education.descriptions.description_content,cv_sections.certifications.descriptions,cv_sections.certifications.descriptions.description_content`,
     { headers }
   );
 
