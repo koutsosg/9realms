@@ -7,6 +7,6 @@ export async function GET() {
   const rawCvData = await fetchCvData();
   console.log(rawCvData.expand.cv_sections);
   const simplifiedCv = simplifyCVResponse(rawCvData);
-  console.log(simplifiedCv.sections);
+  console.log(simplifiedCv);
   return NextResponse.json({ cv: simplifiedCv }, { status: 200 });
 }

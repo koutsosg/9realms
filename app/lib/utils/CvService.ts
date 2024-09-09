@@ -25,6 +25,7 @@ interface simplifyUser {
   lastname: string;
   name: string;
 }
+
 interface DescriptionContent {
   collectionId: string;
   collectionName: string;
@@ -44,6 +45,7 @@ interface Description {
   id: string;
   updated: string;
 }
+
 interface Job {
   city: string;
   collectionId: string;
@@ -64,6 +66,7 @@ interface Job {
   updated: string;
   user_id: string;
 }
+
 interface Education {
   city: string;
   collectionId: string;
@@ -84,6 +87,7 @@ interface Education {
   updated: string;
   user_id: string;
 }
+
 interface Certification {
   collectionId: string;
   collectionName: string;
@@ -100,6 +104,7 @@ interface Certification {
   updated: string;
   verification: string;
 }
+
 interface CvSection {
   certifications?: string[];
   collectionId: string;
@@ -117,6 +122,7 @@ interface CvSection {
   jobs?: string[];
   skills?: string[];
   title: string;
+  type: string;
   updated: string;
   user_id: string;
 }
@@ -170,21 +176,24 @@ interface SimplifiedCertification {
   verification: string;
   descriptions: DescriptionContent[];
 }
-interface simplifyCVSection {
+interface SimplifiedCVSection<DataType> {
   id: string;
   title: string;
-  section: {
-    jobs: SimplifiedJob[];
-    education: SimplifiedEducation[];
-    certifications: SimplifiedCertification[];
-  };
+  type: string;
+  data: DataType[];
 }
+
+type JobSection = SimplifiedCVSection<SimplifiedJob>;
+type EducationSection = SimplifiedCVSection<SimplifiedEducation>;
+type CertificationSection = SimplifiedCVSection<SimplifiedCertification>;
+
 interface SimplifiedCVResponse {
   id: string;
   title: string;
   user: simplifyUser;
-  sections: simplifyCVSection[];
+  sections: (JobSection | EducationSection | CertificationSection)[];
 }
+
 export const simplifyCVResponse = (
   cvResp: CVResponse
 ): SimplifiedCVResponse => {
@@ -196,65 +205,74 @@ export const simplifyCVResponse = (
 
   const { avatar, city, country, email, id, lastname, name } = user_id;
 
-  const sections = cv_sections?.map((section) => {
-    const { id, title, expand } = section;
+  const sections = cv_sections
+    ?.map((section) => {
+      const { id, title, type, expand } = section;
 
-    if (expand.jobs && expand.jobs.length > 0) {
-      return {
-        id: id,
-        title: title,
-        jobs: expand.jobs.map((job) => ({
-          id: job.id,
-          position: job.position,
-          city: job.city,
-          company: job.company,
-          company_url: job.company_url,
-          country: job.country,
-          date_start: job.date_start,
-          date_end: job.date_end,
-          descriptions: job.descriptions,
-        })),
-      };
-    }
+      if (expand.jobs && expand.jobs.length > 0) {
+        return {
+          id: id,
+          title: title,
+          type: type,
+          data: expand.jobs.map((job) => ({
+            id: job.id,
+            position: job.position,
+            city: job.city,
+            company: job.company,
+            company_url: job.company_url,
+            country: job.country,
+            date_start: job.date_start,
+            date_end: job.date_end,
+            descriptions: [],
+          })),
+        } as JobSection;
+      }
 
-    if (expand.certifications && expand.certifications.length > 0) {
-      return {
-        id: id,
-        title: title,
-        education: expand.certifications.map((cert) => ({
-          id: cert.id,
-          institution: cert.institution,
-          course: cert.course,
-          date_end: cert.date_end,
-          verification: cert.verification,
-          descriptions: cert.descriptions,
-        })),
-      };
-    }
+      if (expand.certifications && expand.certifications.length > 0) {
+        return {
+          id: id,
+          title: title,
+          type: "certification",
+          data: expand.certifications.map((cert) => ({
+            id: cert.id,
+            institution: cert.institution,
+            course: cert.course,
+            date_end: cert.date_end,
+            verification: cert.verification,
+            descriptions: [],
+          })),
+        } as CertificationSection;
+      }
 
-    if (expand.education && expand.education.length > 0) {
-      return {
-        id: id,
-        title: title,
-        certifications: expand.education.map((edu) => ({
-          id: edu.id,
-          institution: edu.institution,
-          city: edu.city,
-          country: edu.country,
-          degree: edu.degree,
-          field_of_study: edu.field_of_study,
-          date_start: edu.date_start,
-          date_end: edu.date_end,
-          descriptions: edu.descriptions,
-        })),
-      };
-    }
-  });
+      if (expand.education && expand.education.length > 0) {
+        return {
+          id: id,
+          title: title,
+          type: "education",
+          data: expand.education.map((edu) => ({
+            id: edu.id,
+            institution: edu.institution,
+            city: edu.city,
+            country: edu.country,
+            degree: edu.degree,
+            field_of_study: edu.field_of_study,
+            date_start: edu.date_start,
+            date_end: edu.date_end,
+            descriptions: [],
+          })),
+        } as EducationSection;
+      }
+    })
+    .filter((section) => section !== undefined);
 
   return {
     id: cv_id,
     title: title,
     user: { avatar, city, country, email, id, lastname, name },
-    sections: sections,
+    sections: sections as (
+      | JobSection
+      | EducationSection
+      | CertificationSection
+    )[],
   };
 };
