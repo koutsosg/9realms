@@ -43,8 +43,25 @@ export const fetchCvData = async () => {
     Authorization: `Bearer ${authToken}`,
   };
 
+  const expandUser = "user_id";
+
+  const expandDesc = "description,description.description_content";
+
+  const cvSections = "cv_sections";
+
+  const expandJobs =
+    "cv_sections.jobs,cv_sections.jobs.descriptions,cv_sections.jobs.descriptions.description_content";
+
+  const expandEdu =
+    "cv_sections.education,cv_sections.education.descriptions,cv_sections.education.descriptions.description_content";
+
+  const expandCert =
+    "cv_sections.certifications,cv_sections.certifications.descriptions,cv_sections.certifications.descriptions.description_content";
+
+  const expand = `${expandUser},${expandDesc},${cvSections},${expandJobs},${expandEdu},${expandCert}`;
+
   const response = await fetch(
-    `${API_URL}collections/cvs/records/${cvId}?expand=cv_sections,cv_sections.jobs,cv_sections.education,cv_sections.certifications,cv_sections.jobs.descriptions,cv_sections.jobs.descriptions.description_content,cv_sections.education.descriptions,cv_sections.education.descriptions.description_content,cv_sections.certifications.descriptions,cv_sections.certifications.descriptions.description_content`,
+    `${API_URL}collections/cvs/records/${cvId}?expand=${expand}`,
     { headers }
   );
 

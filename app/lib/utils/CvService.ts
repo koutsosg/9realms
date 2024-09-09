@@ -1,140 +1,260 @@
+interface User {
+  avatar: string | null;
+  city: string;
+  collectionId: string;
+  collectionName: string;
+  country: string;
+  created: string;
+  cv: string;
+  email: string;
+  emailVisibility: boolean;
+  id: string;
+  lastname: string;
+  name: string;
+  role: string;
+  updated: string;
+  username: string;
+  verified: boolean;
+}
+interface simplifyUser {
+  avatar: string | null;
+  city: string;
+  country: string;
+  email: string;
+  id: string;
+  lastname: string;
+  name: string;
+}
 interface DescriptionContent {
+  collectionId: string;
+  collectionName: string;
   content: string;
+  created: string;
+  id: string;
+  updated: string;
 }
 
-interface Descriptions {
-  description_content: DescriptionContent[];
+interface Description {
+  bullets: boolean;
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  description_content: string[];
+  expand: DescriptionContent;
+  id: string;
+  updated: string;
 }
-
 interface Job {
-  position: string;
+  city: string;
+  collectionId: string;
+  collectionName: string;
   company: string;
   company_url: string;
-  city: string;
   country: string;
+  created: string;
+  cv_section_id: string;
+  date_end: string;
   date_start: string;
-  date_end: string | null;
+  descriptions: string[];
   expand: {
-    descriptions: Descriptions;
+    descriptions: Description[];
   };
+  id: string;
+  position: string;
+  updated: string;
+  user_id: string;
 }
-
 interface Education {
-  degree: string | null;
   city: string;
+  collectionId: string;
+  collectionName: string;
   country: string;
-  date_start: string | null;
+  created: string;
+  cv_section_id: string;
   date_end: string | null;
+  date_start: string;
+  degree: string | null;
+  descriptions: string[];
   expand: {
-    descriptions: Descriptions;
+    descriptions: Description[];
   };
+  field_of_study: string;
+  id: string;
+  institution: string;
+  updated: string;
+  user_id: string;
 }
-
+interface Certification {
+  collectionId: string;
+  collectionName: string;
+  course: string;
+  created: string;
+  cv_section_id: string;
+  date_end: string;
+  descriptions: string[];
+  expand: {
+    descriptions: Description[];
+  };
+  id: string;
+  institution: string;
+  updated: string;
+  verification: string;
+}
 interface CvSection {
-  title: string;
-  jobs?: Job[];
-  education?: Education[];
-  expand?: {
+  certifications?: string[];
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  cv_id: string;
+  education?: string[];
+  expand: {
     jobs?: Job[];
     education?: Education[];
+    certifications?: Certification[];
+    /*  skills?: Skills[]; */
   };
-}
-
-interface Expand {
-  cv_sections: CvSection[];
-}
-
-export interface CVResponse {
   id: string;
-  created: string;
-  expand: Expand;
+  jobs?: string[];
+  skills?: string[];
+  title: string;
+  updated: string;
+  user_id: string;
 }
 
+interface CVResponse {
+  collectionId: string;
+  collectionName: string;
+  created: string;
+  cv_sections: string[];
+  description: Description;
+  expand: {
+    cv_sections?: CvSection[];
+    description?: Description;
+    user_id: User;
+  };
+  friendly_title: string | null;
+  id: string;
+  title: string;
+  updated: string;
+  user_id: string;
+}
 interface SimplifiedJob {
+  id: string;
   position: string;
+  city: string;
   company: string;
   company_url: string;
-  location: {
-    city: string;
-    country: string;
-  };
-  start_date: string;
-  end_date: string | null;
-  descriptions: string[];
+  country: string;
+  date_start: string;
+  date_end: string;
+  descriptions: DescriptionContent[];
 }
 
 interface SimplifiedEducation {
-  degree: string | null;
+  id: string;
+  institution: string;
   city: string;
   country: string;
-  start_date: string | null;
-  end_date: string | null;
-  descriptions: string[];
+  degree: string | null;
+  field_of_study: string;
+  date_start: string;
+  date_end: string | null;
+  descriptions: DescriptionContent[];
 }
 
-interface SimplifiedSection {
+interface SimplifiedCertification {
+  id: string;
+  institution: string;
+  course: string;
+  date_end: string;
+  verification: string;
+  descriptions: DescriptionContent[];
+}
+interface simplifyCVSection {
+  id: string;
   title: string;
-  jobs?: SimplifiedJob[];
-  institutions?: SimplifiedEducation[];
-}
-
-interface SimplifiedCVResponse {
-  cv_id: string;
-  created: string;
-  sections: SimplifiedSection[];
-}
-
-export function simplifyCVResponse(
-  cvResponse: CVResponse
-): SimplifiedCVResponse {
-  return {
-    cv_id: cvResponse.id,
-    created: cvResponse.created,
-    sections: cvResponse.expand.cv_sections.map((section) => {
-      const expandedJobs = section.expand?.jobs || section.jobs || [];
-      const expandedEducation =
-        section.expand?.education || section.education || [];
-
-      if (expandedJobs.length > 0) {
-        return {
-          title: section.title || "Work Experience",
-          jobs: expandedJobs.map((job) => ({
-            position: job.position,
-            company: job.company,
-            company_url: job.company_url,
-            location: {
-              city: job.city,
-              country: job.country,
-            },
-            start_date: job.date_start,
-            end_date: job.date_end || null,
-            descriptions: job.expand.descriptions.description_content.map(
-              (desc) => desc.content
-            ),
-          })),
-        };
-      }
-
-      if (expandedEducation.length > 0) {
-        return {
-          title: section.title || "Education",
-          institutions: expandedEducation.map((edu) => ({
-            degree: edu.degree || null,
-            city: edu.city,
-            country: edu.country,
-            start_date: edu.date_start || null,
-            end_date: edu.date_end || null,
-            descriptions: edu.expand.descriptions.description_content.map(
-              (desc) => desc.content
-            ),
-          })),
-        };
-      }
-
-      return {
-        title: section.title || "Other",
-        details: [],
-      };
-    }),
+  section: {
+    jobs: SimplifiedJob[];
+    education: SimplifiedEducation[];
+    certifications: SimplifiedCertification[];
   };
 }
+interface SimplifiedCVResponse {
+  id: string;
+  title: string;
+  user: simplifyUser;
+  sections: simplifyCVSection[];
+}
+export const simplifyCVResponse = (
+  cvResp: CVResponse
+): SimplifiedCVResponse => {
+  const {
+    id: cv_id,
+    title,
+    expand: { cv_sections, user_id },
+  } = cvResp;
+
+  const { avatar, city, country, email, id, lastname, name } = user_id;
+
+  const sections = cv_sections?.map((section) => {
+    const { id, title, expand } = section;
+
+    if (expand.jobs && expand.jobs.length > 0) {
+      return {
+        id: id,
+        title: title,
+        jobs: expand.jobs.map((job) => ({
+          id: job.id,
+          position: job.position,
+          city: job.city,
+          company: job.company,
+          company_url: job.company_url,
+          country: job.country,
+          date_start: job.date_start,
+          date_end: job.date_end,
+          descriptions: job.descriptions,
+        })),
+      };
+    }
+
+    if (expand.certifications && expand.certifications.length > 0) {
+      return {
+        id: id,
+        title: title,
+        education: expand.certifications.map((cert) => ({
+          id: cert.id,
+          institution: cert.institution,
+          course: cert.course,
+          date_end: cert.date_end,
+          verification: cert.verification,
+          descriptions: cert.descriptions,
+        })),
+      };
+    }
+
+    if (expand.education && expand.education.length > 0) {
+      return {
+        id: id,
+        title: title,
+        certifications: expand.education.map((edu) => ({
+          id: edu.id,
+          institution: edu.institution,
+          city: edu.city,
+          country: edu.country,
+          degree: edu.degree,
+          field_of_study: edu.field_of_study,
+          date_start: edu.date_start,
+          date_end: edu.date_end,
+          descriptions: edu.descriptions,
+        })),
+      };
+    }
+  });
+
+  return {
+    id: cv_id,
+    title: title,
+    user: { avatar, city, country, email, id, lastname, name },
+    sections: sections,
+  };
+};
