@@ -204,7 +204,7 @@ type JobSection = SimplifiedCVSection<SimplifiedJob>;
 type EducationSection = SimplifiedCVSection<SimplifiedEducation>;
 type CertificationSection = SimplifiedCVSection<SimplifiedCertification>;
 
-interface SimplifiedCVResponse {
+export interface SimplifiedCVResponse {
   id: string;
   title: string;
   user: simplifyUser;

@@ -1,7 +1,11 @@
 "use client";
-import { useEffect } from "react";
+import { SimplifiedCVResponse } from "@/app/lib/utils/CvService";
+import { useEffect, useState } from "react";
 
 const CvPreview = () => {
+  const [cv, setCv] = useState<SimplifiedCVResponse | null>(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchCvData = async () => {
       try {
@@ -10,19 +14,20 @@ const CvPreview = () => {
           throw new Error("Failed to fetch CV data");
         }
         const result = await response.json();
-        const cv = await result.cv;
-        console.log(cv);
-      } catch (err) {}
+        setCv(result.cv as SimplifiedCVResponse);
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     fetchCvData();
   }, []);
 
-  const handleLogin = async () => {
-    // Your login logic
-  };
-
-  return <div></div>;
+  return (
+    <div>
+      <>{cv?.title}</>
+    </div>
+  );
 };
 
 export default CvPreview;
