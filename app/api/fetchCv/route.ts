@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { fetchCvData } from "@/app/lib/api/api";
 import { NextResponse } from "next/server";
 import { simplifyCVResponse } from "@/app/lib/utils/CvService";

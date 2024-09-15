@@ -11,6 +11,7 @@ interface User {
   id: string;
   lastname: string;
   name: string;
+  phone: number;
   role: string;
   updated: string;
   username: string;
@@ -24,6 +25,7 @@ interface simplifyUser {
   id: string;
   lastname: string;
   name: string;
+  phone: number;
 }
 
 interface DescriptionContent {
@@ -325,7 +327,7 @@ export const simplifyCVResponse = (
   } = cvResp;
 
   // Simplify user object
-  const { avatar, city, country, email, id, lastname, name } = user_id;
+  const { avatar, city, country, email, id, lastname, name, phone } = user_id;
 
   // Simplify sections
   const sections =
@@ -334,7 +336,7 @@ export const simplifyCVResponse = (
   return {
     id: cv_id,
     title,
-    user: { avatar, city, country, email, id, lastname, name },
+    user: { avatar, city, country, email, id, lastname, name, phone },
     description: simplifyDescription(description),
     sections: sections as (
       | JobSection

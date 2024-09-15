@@ -58,7 +58,7 @@ const Test = () => {
               items={item.data}
               dispatch={(action) => {
                 const updatedItems = items.map((i) =>
-                  i.id === item.id ? { ...i, data: action.payload } : i
+                  i.id === item.id ? { ...i, data: action.payload } : i,
                 );
                 dispatch({ type: "REORDER_ITEMS", payload: updatedItems });
               }}

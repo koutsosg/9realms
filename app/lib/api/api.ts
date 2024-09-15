@@ -22,6 +22,7 @@ export const fetchData = async (
     "Content-Type": "application/json",
     ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
   };
+
   const response = await fetch(`${API_URL}${url}`, {
     method,
     headers,

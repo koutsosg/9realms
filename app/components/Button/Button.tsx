@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
     variantClass,
     sizeClass,
-    extraClasses
+    extraClasses,
   );
 
   const renderContent = () =>
