@@ -1,4 +1,4 @@
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return <main>{children}</main>;
+  return <main className="min-h-screen">{children}</main>;
 };
 export default AuthLayout;

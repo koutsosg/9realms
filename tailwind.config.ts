@@ -1,4 +1,3 @@
-import fluid, { extract } from "fluid-tailwind";
 import type { Config } from "tailwindcss";
 const config: Config = {
   content: {
@@ -7,7 +6,7 @@ const config: Config = {
       "./components/**/*.{js,ts,jsx,tsx,mdx}",
       "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    extract,
+  
   },
 
   theme: {
@@ -23,6 +22,10 @@ const config: Config = {
       },
       borderWidth: {
         spinner: "4px",
+      },
+  
+      maxWidth: {
+        "a4": "793.92px",
       },
 
       backgroundImage: {

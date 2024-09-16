@@ -1,5 +1,6 @@
 "use client";
-import { SimplifiedCVResponse } from "@/app/lib/utils/CvService";
+import LinkC from "@/app/components/LinkC/LinkC";
+import { SimplifiedCVResponse } from "@/app/lib/utils/CVService.types";
 import { useEffect, useState } from "react";
 
 const CvPreview = () => {
@@ -21,9 +22,9 @@ const CvPreview = () => {
 
     fetchCvData();
   }, []);
-  console.log(cv);
+
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex max-w-a4 flex-col gap-2">
       {/* header */}
       <div className="flex justify-between">
         <div className="text-nowrap text-xl font-semibold uppercase">
@@ -33,7 +34,10 @@ const CvPreview = () => {
           <p>
             {cv?.user.city}, {cv?.user.country}
           </p>
-          |<p>{cv?.user.phone}</p>|<p>{cv?.user.email}</p>|<p>linkdin</p>
+          |
+          <LinkC href={`tel:${cv?.user.phone}`} />|
+          <LinkC href={`mailto:${cv?.user.email}`} />|
+          <LinkC href={`/`}>Linkedin</LinkC>
         </div>
       </div>
       {/** title-Description */}

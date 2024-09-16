@@ -12,7 +12,9 @@ const LoginPage = async (): Promise<JSX.Element> => {
   return (
     <>
       <Form />
-      <CvPreview />
+      <div className="flex flex-col items-center">
+        <CvPreview />
+      </div>
     </>
   );
 };

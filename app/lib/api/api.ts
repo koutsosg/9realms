@@ -15,7 +15,7 @@ const getToken = (): string | undefined => {
 export const fetchData = async (
   url: string,
   method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
-  body?: any
+  body?: any,
 ) => {
   const authToken = getToken();
   const headers: HeadersInit = {
@@ -44,7 +44,7 @@ export const fetchCvData = async () => {
     Authorization: `Bearer ${authToken}`,
   };
 
-  const expandUser = "user_id";
+  const expandUser = "user_id,user_id.urls,user_id.urls.url_type";
 
   const expandDesc = "description,description.description_content";
 
@@ -63,7 +63,7 @@ export const fetchCvData = async () => {
 
   const response = await fetch(
     `${API_URL}collections/cvs/records/${cvId}?expand=${expand}`,
-    { headers }
+    { headers },
   );
 
   if (!response.ok) {

@@ -1,222 +1,31 @@
-interface User {
-  avatar: string | null;
-  city: string;
-  collectionId: string;
-  collectionName: string;
-  country: string;
-  created: string;
-  cv: string;
-  email: string;
-  emailVisibility: boolean;
-  id: string;
-  lastname: string;
-  name: string;
-  phone: number;
-  role: string;
-  updated: string;
-  username: string;
-  verified: boolean;
-}
-interface simplifyUser {
-  avatar: string | null;
-  city: string;
-  country: string;
-  email: string;
-  id: string;
-  lastname: string;
-  name: string;
-  phone: number;
-}
-
-interface DescriptionContent {
-  collectionId: string;
-  collectionName: string;
-  content: string[];
-  created: string;
-  id: string;
-  updated: string;
-}
-
-interface Description {
-  bullets: boolean;
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  description_content: string[];
-  expand: {
-    description_content: DescriptionContent[];
-  };
-  id: string;
-  updated: string;
-}
-interface simplifyDescriptionContent {
-  collectionId: string;
-  collectionName: string;
-  content: string[];
-  id: string;
-  updated: string;
-}
-
-interface simplifyDescription {
-  id: string;
-  bullets: boolean;
-  collectionId: string;
-  collectionName: string;
-  description_content: simplifyDescriptionContent[];
-}
-
-interface Job {
-  city: string;
-  collectionId: string;
-  collectionName: string;
-  company: string;
-  company_url: string;
-  country: string;
-  created: string;
-  cv_section_id: string;
-  date_end: string;
-  date_start: string;
-  descriptions: string[];
-  expand: {
-    descriptions: Description;
-  };
-  id: string;
-  position: string;
-  updated: string;
-  user_id: string;
-}
-
-interface Education {
-  city: string;
-  collectionId: string;
-  collectionName: string;
-  country: string;
-  created: string;
-  cv_section_id: string;
-  date_end: string | null;
-  date_start: string;
-  degree: string | null;
-  descriptions: string[];
-  expand: {
-    descriptions: Description;
-  };
-  field_of_study: string;
-  id: string;
-  institution: string;
-  updated: string;
-  user_id: string;
-}
-
-interface Certification {
-  collectionId: string;
-  collectionName: string;
-  course: string;
-  created: string;
-  cv_section_id: string;
-  date_end: string;
-  descriptions: string[];
-  expand: {
-    descriptions: Description;
-  };
-  id: string;
-  institution: string;
-  updated: string;
-  verification: string;
-}
-
-interface CvSection {
-  certifications?: string[];
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  cv_id: string;
-  education?: string[];
-  expand: {
-    jobs?: Job[];
-    education?: Education[];
-    certifications?: Certification[];
-    /*  skills?: Skills[]; */
-  };
-  id: string;
-  jobs?: string[];
-  skills?: string[];
-  title: string;
-  type: string;
-  updated: string;
-  user_id: string;
-}
-
-interface CVResponse {
-  collectionId: string;
-  collectionName: string;
-  created: string;
-  cv_sections: string[];
-  description: Description;
-  expand: {
-    cv_sections?: CvSection[];
-    description: Description;
-    user_id: User;
-  };
-  friendly_title: string | null;
-  id: string;
-  title: string;
-  updated: string;
-  user_id: string;
-}
-interface SimplifiedJob {
-  id: string;
-  position: string;
-  city: string;
-  company: string;
-  company_url: string;
-  country: string;
-  date_start: string;
-  date_end: string;
-  description: simplifyDescription;
-}
-
-interface SimplifiedEducation {
-  id: string;
-  institution: string;
-  city: string;
-  country: string;
-  degree: string | null;
-  field_of_study: string;
-  date_start: string;
-  date_end: string | null;
-  description: simplifyDescription;
-}
-
-interface SimplifiedCertification {
-  id: string;
-  institution: string;
-  course: string;
-  date_end: string;
-  verification: string;
-  description: simplifyDescription;
-}
-interface SimplifiedCVSection<DataType> {
-  id: string;
-  title: string;
-  type: string;
-  data: DataType[];
-}
-
-type JobSection = SimplifiedCVSection<SimplifiedJob>;
-type EducationSection = SimplifiedCVSection<SimplifiedEducation>;
-type CertificationSection = SimplifiedCVSection<SimplifiedCertification>;
-
-export interface SimplifiedCVResponse {
-  id: string;
-  title: string;
-  user: simplifyUser;
-  description: simplifyDescription;
-  sections: (JobSection | EducationSection | CertificationSection)[];
-}
+import {
+  Certification,
+  CertificationSection,
+  CVResponse,
+  CvSection,
+  Description,
+  DescriptionContent,
+  Education,
+  EducationSection,
+  Job,
+  JobSection,
+  SimplifiedCertification,
+  SimplifiedCVResponse,
+  SimplifiedDescription,
+  SimplifiedDescriptionContent,
+  SimplifiedEducation,
+  SimplifiedJob,
+  SimplifiedUrls,
+  SimplifiedUrlTypes,
+  SimplifiedUser,
+  UrlType,
+  User,
+  UserUrl,
+} from "./CVService.types";
 
 const simplifyDescriptionContent = (
-  descriptionContent: DescriptionContent[]
-): simplifyDescriptionContent[] => {
+  descriptionContent: DescriptionContent[],
+): SimplifiedDescriptionContent[] => {
   return descriptionContent.map((content) => ({
     collectionId: content.collectionId,
     collectionName: content.collectionName,
@@ -226,14 +35,16 @@ const simplifyDescriptionContent = (
     updated: content.updated,
   }));
 };
-const simplifyDescription = (description: Description): simplifyDescription => {
+const simplifyDescription = (
+  description: Description,
+): SimplifiedDescription => {
   return {
     id: description.id,
     bullets: description.bullets,
     collectionId: description.collectionId,
     collectionName: description.collectionName,
     description_content: simplifyDescriptionContent(
-      description.expand.description_content
+      description.expand.description_content,
     ),
   };
 };
@@ -262,7 +73,7 @@ const simplifyEducation = (edu: Education): SimplifiedEducation => ({
 });
 
 const simplifyCertification = (
-  cert: Certification
+  cert: Certification,
 ): SimplifiedCertification => ({
   id: cert.id,
   institution: cert.institution,
@@ -274,7 +85,7 @@ const simplifyCertification = (
 
 // Function to map and simplify a section
 const mapSection = (
-  section: CvSection
+  section: CvSection,
 ): JobSection | EducationSection | CertificationSection | null => {
   const { id, title, type, expand } = section;
 
@@ -315,19 +126,40 @@ const mapSection = (
 
   return null;
 };
+const simplifyUrlTypes = (type: UrlType): SimplifiedUrlTypes => {
+  return { id: type.id, name: type.name, icon: type.icon };
+};
 
+const simplifyUrls = (urls: UserUrl[]): SimplifiedUrls[] => {
+  return urls.map((url) => ({
+    id: url.id,
+    url: url.url,
+    url_type: simplifyUrlTypes(url.expand.url_type),
+    user_id: url.user_id,
+  }));
+};
+const simplifyUser = (user: User): SimplifiedUser => {
+  return {
+    avatar: user.avatar,
+    city: user.city,
+    country: user.country,
+    email: user.email,
+    id: user.id,
+    lastname: user.lastname,
+    name: user.name,
+    phone: user.phone,
+    urls: simplifyUrls(user.expand.urls),
+  };
+};
 // Main function to simplify CVResponse
 export const simplifyCVResponse = (
-  cvResp: CVResponse
+  cvResp: CVResponse,
 ): SimplifiedCVResponse => {
   const {
     id: cv_id,
     title,
     expand: { description, cv_sections, user_id },
   } = cvResp;
-
-  // Simplify user object
-  const { avatar, city, country, email, id, lastname, name, phone } = user_id;
 
   // Simplify sections
   const sections =
@@ -336,7 +168,7 @@ export const simplifyCVResponse = (
   return {
     id: cv_id,
     title,
-    user: { avatar, city, country, email, id, lastname, name, phone },
+    user: simplifyUser(user_id),
     description: simplifyDescription(description),
     sections: sections as (
       | JobSection
