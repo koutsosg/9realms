@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   const variantClass = buttonStyles[variant];
 
   const sizeClass = sizeStyles[size];
-
+  ("test");
   const buttonClasses = classNames(
     "inline-flex items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
     variantClass,
