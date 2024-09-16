@@ -22,7 +22,7 @@ import {
   User,
   UserUrl,
 } from "./CVService.types";
-
+("test");
 const simplifyDescriptionContent = (
   descriptionContent: DescriptionContent[],
 ): SimplifiedDescriptionContent[] => {
