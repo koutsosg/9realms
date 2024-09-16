@@ -22,7 +22,7 @@ import {
   User,
   UserUrl,
 } from "./CVService.types";
-("test");
+
 const simplifyDescriptionContent = (
   descriptionContent: DescriptionContent[],
 ): SimplifiedDescriptionContent[] => {
@@ -30,7 +30,6 @@ const simplifyDescriptionContent = (
     collectionId: content.collectionId,
     collectionName: content.collectionName,
     content: content.content,
-    created: content.created,
     id: content.id,
     updated: content.updated,
   }));
