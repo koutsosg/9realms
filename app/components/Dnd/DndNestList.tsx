@@ -18,15 +18,11 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useId, useState } from "react";
-import { ActionType, ItemType } from "@/app/components/dnd/dndTypes";
+import {
+  DndListComponentProps,
+  SortableItemProps,
+} from "@/app/components/Dnd/DndNestList.types";
 
-interface SortableItemProps {
-  itemId: UniqueIdentifier;
-  content: React.ReactNode;
-  activeId: UniqueIdentifier | null;
-  isDragging: boolean;
-  style?: React.CSSProperties;
-}
 const SortableItem: React.FC<SortableItemProps> = ({
   itemId,
   content,
@@ -38,6 +34,7 @@ const SortableItem: React.FC<SortableItemProps> = ({
     useSortable({
       id: itemId,
     });
+
   const calculateOpacity = () => {
     if (isDragging) {
       if (itemId !== activeId) {
@@ -47,11 +44,11 @@ const SortableItem: React.FC<SortableItemProps> = ({
     }
     return 1;
   };
+
   const draggedStyle: React.CSSProperties = {
     transform: CSS.Translate.toString(transform),
     transition,
     backgroundColor: itemId === activeId ? "transparent" : "",
-
     opacity:
       calculateOpacity() /* isDragging ? (itemId !== activeId ? 0.5 : 0) : 1 alternative method for calculate opacity  */,
     ...style,
@@ -63,12 +60,6 @@ const SortableItem: React.FC<SortableItemProps> = ({
     </div>
   );
 };
-
-interface DndListComponentProps {
-  items: ItemType[];
-  children: (item: ItemType) => React.ReactNode;
-  dispatch: React.Dispatch<ActionType>;
-}
 
 const DndListComponent: React.FC<DndListComponentProps> = ({
   items,

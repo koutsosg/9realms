@@ -1,9 +1,9 @@
 import {
   buttonStyles,
   sizeStyles,
-} from "@/app/components/primaryButton/Button.styles";
-import { ButtonProps } from "@/app/components/primaryButton/Button.types";
-import Spinner from "../spinner/Spinner";
+} from "@/app/components/Button/Button.styles";
+import { ButtonProps } from "@/app/components/Button/Button.types";
+import Spinner from "../Spinner/Spinner";
 import classNames from "classnames";
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
     variantClass,
     sizeClass,
-    extraClasses
+    extraClasses,
   );
 
   const renderContent = () =>

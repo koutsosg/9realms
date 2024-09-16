@@ -1,7 +1,7 @@
 import { useReducer } from "react";
-import DndListComponent from "@/app/components/dnd/dndList";
-import { itemsReducer } from "@/app/components/dnd/dndReducer";
-import { ItemType } from "@/app/components/dnd/dndTypes";
+import { itemsReducer } from "@/app/components/Dnd/DndReducer";
+import { ItemType } from "@/app/components/Dnd/DndNestList.types";
+import DndListComponent from "@/app/components/Dnd/DndNestList";
 
 const initialItems: ItemType[] = [
   {
@@ -47,7 +47,7 @@ const initialItems: ItemType[] = [
 
 const Test = () => {
   const [items, dispatch] = useReducer(itemsReducer, initialItems);
-
+  console.log(items);
   return (
     <DndListComponent items={items} dispatch={dispatch}>
       {(item) => (
@@ -58,7 +58,7 @@ const Test = () => {
               items={item.data}
               dispatch={(action) => {
                 const updatedItems = items.map((i) =>
-                  i.id === item.id ? { ...i, data: action.payload } : i
+                  i.id === item.id ? { ...i, data: action.payload } : i,
                 );
                 dispatch({ type: "REORDER_ITEMS", payload: updatedItems });
               }}

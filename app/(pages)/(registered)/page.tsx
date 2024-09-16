@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/app/components/primaryButton/Button";
+import Button from "@/app/components/Button/Button";
 import Test from "@/app/components/test";
 import { signOut } from "next-auth/react";
 import React from "react";
