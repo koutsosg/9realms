@@ -251,3 +251,8 @@ export interface SimplifiedCVResponse {
 export type JobSection = SimplifiedCVSection<SimplifiedJob>;
 export type EducationSection = SimplifiedCVSection<SimplifiedEducation>;
 export type CertificationSection = SimplifiedCVSection<SimplifiedCertification>;
+
+export type RenderableSection =
+  | JobSection
+  | EducationSection
+  | CertificationSection;

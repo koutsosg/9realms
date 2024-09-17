@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { LinkComponentProps } from "./LinkC.types";
+import { LinkComponentProps } from "@/app/components/LinkC/LinkC.types";
 
 const LinkC: React.FC<LinkComponentProps> = ({
   href,
@@ -10,7 +10,7 @@ const LinkC: React.FC<LinkComponentProps> = ({
   const isMailOrTel = href.startsWith("mailto:") || href.startsWith("tel:");
 
   const defaultClasses =
-    "text-blue-600 hover:text-blue-800 focus:text-blue-800";
+    "text-blue-600 hover:text-blue-800 focus:text-blue-800 flex";
 
   const combinedClasses = classNames(defaultClasses, className);
 

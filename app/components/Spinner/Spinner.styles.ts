@@ -1,4 +1,4 @@
-import { SpinnerSize } from "./Spinner.types";
+import { SpinnerSize } from "@/app/components/Spinner/Spinner.types";
 
 export const sizeStyles: Record<SpinnerSize, string> = {
   small: "w-4 h-4",

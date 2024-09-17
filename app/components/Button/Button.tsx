@@ -3,7 +3,7 @@ import {
   sizeStyles,
 } from "@/app/components/Button/Button.styles";
 import { ButtonProps } from "@/app/components/Button/Button.types";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "@/app/components/Spinner/Spinner";
 import classNames from "classnames";
 
 const Button: React.FC<ButtonProps> = ({

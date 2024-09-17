@@ -1,14 +1,12 @@
 import {
   Certification,
-  CertificationSection,
   CVResponse,
   CvSection,
   Description,
   DescriptionContent,
   Education,
-  EducationSection,
   Job,
-  JobSection,
+  RenderableSection,
   SimplifiedCertification,
   SimplifiedCVResponse,
   SimplifiedDescription,
@@ -83,9 +81,7 @@ const simplifyCertification = (
 });
 
 // Function to map and simplify a section
-const mapSection = (
-  section: CvSection,
-): JobSection | EducationSection | CertificationSection | null => {
+const mapSection = (section: CvSection): RenderableSection | null => {
   const { id, title, type, expand } = section;
 
   switch (type) {
@@ -99,16 +95,7 @@ const mapSection = (
         };
       }
       break;
-    case "education":
-      if (expand.education) {
-        return {
-          id,
-          title,
-          type,
-          data: expand.education.map(simplifyEducation),
-        };
-      }
-      break;
+
     case "certification":
       if (expand.certifications) {
         return {
@@ -116,6 +103,16 @@ const mapSection = (
           title,
           type,
           data: expand.certifications.map(simplifyCertification),
+        };
+      }
+      break;
+    case "education":
+      if (expand.education) {
+        return {
+          id,
+          title,
+          type,
+          data: expand.education.map(simplifyEducation),
         };
       }
       break;
@@ -169,10 +166,6 @@ export const simplifyCVResponse = (
     title,
     user: simplifyUser(user_id),
     description: simplifyDescription(description),
-    sections: sections as (
-      | JobSection
-      | EducationSection
-      | CertificationSection
-    )[],
+    sections: sections as RenderableSection[],
   };
 };

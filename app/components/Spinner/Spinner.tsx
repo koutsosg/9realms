@@ -1,6 +1,6 @@
 import React from "react";
-import { SpinnerProps } from "./Spinner.types";
-import { sizeStyles } from "./Spinner.styles";
+import { SpinnerProps } from "@/app/components/Spinner//Spinner.types";
+import { sizeStyles } from "@/app/components/Spinner//Spinner.styles";
 import classNames from "classnames";
 
 const Spinner: React.FC<SpinnerProps> = ({
@@ -14,7 +14,7 @@ const Spinner: React.FC<SpinnerProps> = ({
   const spinnerClasses = classNames(
     "border-black/20 border-spinner rounded-full animate-spin",
     sizeClass,
-    extraClasses
+    extraClasses,
   );
 
   return (
