@@ -59,7 +59,7 @@ export const options: NextAuthOptions = {
                 identity: credentials.email,
                 password: credentials.password,
               }),
-            }
+            },
           );
 
           if (!response.ok) {

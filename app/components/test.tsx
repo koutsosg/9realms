@@ -6,7 +6,7 @@ import DndListComponent from "@/app/components/Dnd/DndNestList";
 const initialItems: ItemType[] = [
   {
     id: 1,
-    title: "work expirience",
+    title: "work experience",
     data: [
       {
         id: 4,
