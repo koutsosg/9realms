@@ -1,4 +1,3 @@
-"use client";
 import CertItem from "@/app/components/CVPreview/CertItem/CertItem";
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
 import EduItem from "@/app/components/CVPreview/EduItem/EduItem";
@@ -9,28 +8,8 @@ import {
   RenderableSection,
   SimplifiedCVResponse,
 } from "@/app/lib/utils/CVService.types";
-import { useEffect, useState } from "react";
 
-const CvPreview = () => {
-  const [cv, setCv] = useState<SimplifiedCVResponse | null>();
-
-  useEffect(() => {
-    const fetchCvData = async () => {
-      try {
-        const response = await fetch(`/api/fetchCv`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch CV data");
-        }
-        const result = await response.json();
-        setCv(result.cv as SimplifiedCVResponse);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchCvData();
-  }, []);
-  console.log(cv);
+const CvPreview: React.FC<{ cv: SimplifiedCVResponse | null }> = ({ cv }) => {
   const renderSection = (section: RenderableSection) => {
     switch (section.type) {
       case "job":

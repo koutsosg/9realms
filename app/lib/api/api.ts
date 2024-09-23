@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { simplifyCVResponse } from "../utils/CvService";
 
 const API_URL = process.env.API_URL;
 
@@ -37,12 +38,7 @@ export const fetchData = async (
 };
 
 export const fetchCvData = async () => {
-  const authToken = process.env.ADMIN_TOKEN || "";
-  const cvId = "8ruortmj0vdvbjh";
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${authToken}`,
-  };
+  const cvId = process.env.ADMIN_CV_ID;
 
   const expandUser = "user_id,user_id.urls,user_id.urls.url_type";
 
@@ -63,12 +59,12 @@ export const fetchCvData = async () => {
 
   const response = await fetch(
     `${API_URL}collections/cvs/records/${cvId}?expand=${expand}`,
-    { headers },
   );
 
   if (!response.ok) {
     throw new Error(`Failed to fetch CV data: ${response.statusText}`);
   }
-
-  return response.json();
+  const rawCvData = await response.json();
+  const data = simplifyCVResponse(rawCvData);
+  return data;
 };
