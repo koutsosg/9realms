@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/app/components/Button/Button";
+import Input from "@/app/components/Input/Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
@@ -35,28 +36,21 @@ const Form = () => {
     }
   };
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input name="email" />
-          <label htmlFor={"username"}>email</label>
-        </div>
-
-        <div>
-          <input name="password" type="password" />
-
-          <label htmlFor={"password"}>password</label>
-        </div>
-        <Button
-          variant="secondary"
-          size="medium"
-          isLoading={isLoading}
-          spinner={true}
-        >
-          login
-        </Button>
-      </form>
-    </>
+    <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-2">
+        <Input name="email" type="text" label="USERNAME" required />
+        <Input name="password" type="password" label="PASSWORD" required />
+      </div>
+      <Button
+        extraClasses="w-full"
+        variant="primary"
+        size="medium"
+        isLoading={isLoading}
+        spinner={true}
+      >
+        login
+      </Button>
+    </form>
   );
 };
 

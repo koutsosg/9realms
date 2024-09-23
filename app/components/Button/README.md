@@ -6,18 +6,18 @@ The `Button` component is a reusable and flexible button element in React that s
 
 ## Props
 
-| Prop Name          | Type                                      | Default        | Description                                                     |
-| ------------------ | ----------------------------------------- | -------------- | --------------------------------------------------------------- |
-| **variant**        | `"primary" , "secondary" , "danger"`      | `"primary"`    | The visual style of the button. See "Default Styles" below.     |
-| **size**           | `"small" , "medium" , "large"`            | `"medium"`     | The size of the button. See "Default Styles" below.             |
-| **isLoading**      | `boolean`                                 | `false`        | Whether the button shows a loading state.                       |
-| **loadingText**    | `string`                                  | `"Loading..."` | Text to display when the button is loading.                     |
-| **extraClasses**   | `string`                                  | `""`           | Additional classes for custom styling.                          |
-| **spinner**        | `boolean`                                 | `false`        | Whether to show a spinner when loading.                         |
-| **spinnerColor**   | `string` (HEX)                            | `"#FFF"`       | The color of the spinner.                                       |
-| **spinnerClasses** | `string`                                  | `""`           | Additional classes for custom styling of the spinner.           |
-| **children**       | `React.ReactNode`                         | N/A            | The content to display inside the button when it’s not loading. |
-| **...props**       | `ButtonHTMLAttributes<HTMLButtonElement>` | N/A            | Additional props passed to the underlying `<button>` element.   |
+| Prop Name          | Type                                         | Default        | Description                                                     |
+| ------------------ | -------------------------------------------- | -------------- | --------------------------------------------------------------- |
+| **variant**        | `"primary" , "secondary" , "danger", "none"` | `"primary"`    | The visual style of the button. See "Default Styles" below.     |
+| **size**           | `"small" , "medium" , "large","none"`        | `"medium"`     | The size of the button. See "Default Styles" below.             |
+| **isLoading**      | `boolean`                                    | `false`        | Whether the button shows a loading state.                       |
+| **loadingText**    | `string`                                     | `"Loading..."` | Text to display when the button is loading.                     |
+| **extraClasses**   | `string`                                     | `""`           | Additional classes for custom styling.                          |
+| **spinner**        | `boolean`                                    | `false`        | Whether to show a spinner when loading.                         |
+| **spinnerColor**   | `string` (HEX)                               | `"#FFF"`       | The color of the spinner.                                       |
+| **spinnerClasses** | `string`                                     | `""`           | Additional classes for custom styling of the spinner.           |
+| **children**       | `React.ReactNode`                            | N/A            | The content to display inside the button when it’s not loading. |
+| **...props**       | `ButtonHTMLAttributes<HTMLButtonElement>`    | N/A            | Additional props passed to the underlying `<button>` element.   |
 
 ## Default Styles
 
@@ -28,6 +28,7 @@ The `Button` component is a reusable and flexible button element in React that s
 | primary   | `"bg-blue-500 text-white hover:bg-blue-600"` |
 | secondary | `"bg-gray-500 text-white hover:bg-gray-600"` |
 | danger    | `"bg-red-500 text-white hover:bg-red-600"`   |
+| none      | `" "`                                        |
 
 ### Button Sizes
 
@@ -36,6 +37,7 @@ The `Button` component is a reusable and flexible button element in React that s
 | small  | `"py-1 px-3 text-sm"`   |
 | medium | `"py-2 px-4 text-base"` |
 | large  | `"py-3 px-6 text-lg"`   |
+| none   | `" "`                   |
 
 ## Usage Example
 
@@ -75,10 +77,10 @@ The `Button` component is a reusable and flexible button element in React that s
 
 ## Props
 
-- **variant** (`"primary" | "secondary" | "danger"`) - _Default:_ `"primary"`  
+- **variant** (`"primary" | "secondary" | "danger" | "none"`) - _Default:_ `"primary"`  
   The visual style of the button. See "Default Styles" below.
 
-- **size** (`"small" | "medium" | "large"`) - _Default:_ `"medium"`  
+- **size** (`"small" | "medium" | "large"| "none"`) - _Default:_ `"medium"`  
   The size of the button. See "Default Styles" below.
 
 - **isLoading** (`boolean`) - _Default:_ `false`  
@@ -112,12 +114,14 @@ The `Button` component is a reusable and flexible button element in React that s
 - **primary**: `"bg-blue-500 text-white hover:bg-blue-600"`
 - **secondary**: `"bg-gray-500 text-white hover:bg-gray-600"`
 - **danger**: `"bg-red-500 text-white hover:bg-red-600"`
+- **none**: `" "`
 
 ### Button Sizes
 
 - **small**: `"py-1 px-3 text-sm"`
 - **medium**: `"py-2 px-4 text-base"`
 - **large**: `"py-3 px-6 text-lg"`
+- **none**: `" "`
 
 ## Usage Example
 

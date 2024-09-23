@@ -1,17 +1,19 @@
 import { ButtonHTMLAttributes } from "react";
 
-export type ButtonVariant = "primary" | "secondary" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "danger" | "none";
 
-export type ButtonSize = "small" | "medium" | "large";
+export type ButtonSize = "small" | "medium" | "large" | "none";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** The visual style of the button.
+   * "none": "",
    * "primary": "bg-blue-500 text-white hover:bg-blue-600",
    * "secondary": "bg-gray-500 text-white hover:bg-gray-600",
    * "danger": "bg-red-500 text-white hover:bg-red-600",
    */
   variant?: ButtonVariant;
   /** The size of the button.
+   * "none": "",
    * "small": "py-1 px-3 text-sm",
    * "medium": "py-2 px-4 text-base",
    * "large": "py-3 px-6 text-lg",
