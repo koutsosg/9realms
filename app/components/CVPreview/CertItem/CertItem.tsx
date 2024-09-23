@@ -1,6 +1,6 @@
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
 import { CertItemProps } from "./CertItem.types";
-import DateRange from "../DateRange/DateRange";
+import DateRange from "../../DateRange/DateRange";
 import LinkC from "@/app/components/LinkC/LinkC";
 
 const CertItem = ({ cert }: CertItemProps) => (

@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   const sizeClass = sizeStyles[size];
 
   const buttonClasses = classNames(
-    "inline-flex items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
+    "capitalize inline-flex text-nowrap items-center justify-center font-medium rounded-md transition duration-150 ease-in-out ",
     variantClass,
     sizeClass,
     extraClasses,

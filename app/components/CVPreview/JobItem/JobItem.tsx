@@ -1,6 +1,6 @@
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
 import { JobItemProps } from "@/app/components/CVPreview/JobItem/JobItem.types";
-import DateRange from "@/app/components/CVPreview/DateRange/DateRange";
+import DateRange from "@/app/components/DateRange/DateRange";
 
 const JobItem = ({ job }: JobItemProps) => (
   <div key={job.id} className="flex flex-col gap-1">

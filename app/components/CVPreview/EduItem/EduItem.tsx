@@ -1,6 +1,6 @@
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
 import { EduItemProps } from "./EduItem.types";
-import DateRange from "@/app/components/CVPreview/DateRange/DateRange";
+import DateRange from "@/app/components/DateRange/DateRange";
 
 const EduItem = ({ edu }: EduItemProps) => (
   <div key={edu.id} className="flex flex-col gap-1">

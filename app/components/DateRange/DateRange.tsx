@@ -1,7 +1,7 @@
 import React from "react";
 import { formatDate } from "@/app/lib/utils/date/dateUtils";
 import classNames from "classnames";
-import { DateRangeProps } from "@/app/components/CVPreview/DateRange/DateRange.types";
+import { DateRangeProps } from "@/app/components/DateRange/DateRange.types";
 
 // Create a type that enforces either start or end to be required
 

@@ -1,4 +1,7 @@
-import { ActionType, ItemType } from "@/app/components/Dnd/DndNestList.types";
+import {
+  ActionType,
+  ItemType,
+} from "@/app/components/Dnd/NestList/DndNestList.types";
 
 export const itemsReducer = (
   state: ItemType[],

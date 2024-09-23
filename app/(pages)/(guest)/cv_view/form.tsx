@@ -36,7 +36,10 @@ const Form = () => {
     }
   };
   return (
-    <form className="flex flex-col items-center gap-4" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col items-center gap-4 rounded-lg bg-secondary_2 p-10"
+      onSubmit={handleSubmit}
+    >
       <div className="flex flex-col gap-2">
         <Input name="email" type="text" label="USERNAME" required />
         <Input name="password" type="password" label="PASSWORD" required />

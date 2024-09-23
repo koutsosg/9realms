@@ -21,7 +21,7 @@ import { useId, useState } from "react";
 import {
   DndListComponentProps,
   SortableItemProps,
-} from "@/app/components/Dnd/DndNestList.types";
+} from "@/app/components/Dnd/NestList/DndNestList.types";
 
 const SortableItem: React.FC<SortableItemProps> = ({
   itemId,
