@@ -29,14 +29,14 @@ const LoginPage = async (): Promise<JSX.Element> => {
           <CvPreview cv={cv} />
         </PrintComponent>
       </div>
-      <Positioner
+      {/*  <Positioner
         position="bottom-left"
         extraClasses="m-10"
         buttonLabel="enter"
         toggleable={true}
       >
         <Form />
-      </Positioner>
+      </Positioner> */}
     </>
   );
 };

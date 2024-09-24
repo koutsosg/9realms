@@ -49,15 +49,16 @@ const CvPreview: React.FC<{ cv: SimplifiedCVResponse | null }> = ({ cv }) => {
     return <p>Loading...</p>;
   }
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex max-w-a4 flex-col gap-3 bg-white px-8 py-8 text-primary_3">
+    <div className="flex flex-col items-center px-2">
+      <div className="flex max-w-a4 flex-col gap-3 bg-white px-2 py-2 text-primary_3 sm:px-4 sm:py-3 md:px-8 md:py-6">
         {/* header */}
         <div className="flex flex-col gap-2">
-          <div className="flex justify-between">
-            <div className="text-nowrap text-xl font-semibold uppercase">
+          <div className="flex flex-col justify-between gap-2 sm:flex-row">
+            <div className="text-nowrap text-sm font-semibold uppercase sm:text-lg md:text-xl">
               {cv?.user.name} {cv?.user.lastname}
             </div>
-            <div className="flex items-center gap-1 text-nowrap text-xs">
+
+            <div className="flex items-center gap-1 text-nowrap text-xs md:text-sm">
               <p>
                 {cv?.user.city}, {cv?.user.country}
               </p>
@@ -69,7 +70,7 @@ const CvPreview: React.FC<{ cv: SimplifiedCVResponse | null }> = ({ cv }) => {
           </div>
           {/** title-Description */}
           <div className="flex flex-col gap-1">
-            <h1 className="text-sm font-semibold">{cv?.title}</h1>
+            <h1 className="text-xs font-semibold sm:text-sm">{cv?.title}</h1>
             <DescriptionList
               content={cv?.description.description_content}
               bullets={cv?.description.bullets}

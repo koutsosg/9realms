@@ -6,7 +6,6 @@ const config: Config = {
       "./components/**/*.{js,ts,jsx,tsx,mdx}",
       "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-  
   },
 
   theme: {
@@ -23,15 +22,18 @@ const config: Config = {
       borderWidth: {
         spinner: "4px",
       },
-  
+
       maxWidth: {
-        "a4": "793.92px",
+        a4: "793.92px",
       },
 
       backgroundImage: {
         /*      "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))", */
+      },
+      fontSize: {
+        xxs: ["0.688rem", { lineHeight: "1rem" }], // 10px with line height of 16px
       },
       colors: {
         gradient:
