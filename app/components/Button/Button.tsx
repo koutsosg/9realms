@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({
   size = "medium",
   isLoading = false,
   loadingText = "Loading...",
-  extraClasses,
+  extraClasses = " ",
   spinner = false,
   spinnerColor = "#FFF",
   spinnerClasses = "",

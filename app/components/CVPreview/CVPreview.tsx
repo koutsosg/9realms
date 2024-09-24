@@ -50,7 +50,7 @@ const CvPreview: React.FC<{ cv: SimplifiedCVResponse | null }> = ({ cv }) => {
   }
   return (
     <div className="flex flex-col items-center">
-      <div className="flex max-w-a4 flex-col gap-3 border border-neutral-500 bg-white px-8 py-8 text-primary_3">
+      <div className="flex max-w-a4 flex-col gap-3 bg-white px-8 py-8 text-primary_3">
         {/* header */}
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
