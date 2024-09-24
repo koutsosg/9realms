@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Project
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This is a work-in-progress project where I am building a personal page that showcases my bio and other important details. The page will feature an intuitive drag-and-drop interface that allows me to edit and rearrange content seamlessly. I'm using Pocketbase as the backend to manage data efficiently, and I’ve implemented Next.js for authentication and routing. The project is built with TypeScript for type safety and Tailwind CSS for responsive, utility-first styling.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Components
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In this project, I've created several reusable components that enhance my UI. Each component comes with its own documentation to help me remember how to use them effectively.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Here’s a quick reference:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Button](./app/components/Button/README.md) - A customizable button component that I can style and use throughout my app.
+- [DateRange](./app/components/DateRange/README.md) - A component that formats and displays a date range.
+- [DndNestList](./app/components/Dnd/NestList/README.md) - A component that allows me to implement a drag-and-drop interface for reordering an items list.
+- [Input](./app/components/Input.md) - A flexible input field component that can handle various input types and validations.
+- [LinkC](./app/components/LinkC/README.md) - A reusable and flexible link component that handles internal, external, `mailto:`, and `tel:` links.
+- [Positioner](./app/components/Positioner.md) - A handy component for positioning elements in different corners of the viewport, making my layout more dynamic.
+- [Spinner](./app/components/Spinner/README.md) - A simple, customizable loading indicator that can be used independently or as part of other components.
 
-## Learn More
+## Future Plans
 
-To learn more about Next.js, take a look at the following resources:
+As I continue to develop this project, I plan to add more features, including:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Profile Editing**: A user-friendly interface for editing my bio and other personal details.
+- **Real-time Updates**: Leveraging Pocketbase for live updates and changes without needing to refresh the page.
+- **Additional Components**: Expanding my library of reusable components to streamline the development process.
+- **Responsive Design**: Ensuring that the page looks great on all devices by fully utilizing Tailwind CSS.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project serves as both a personal portfolio and a playground for me to experiment with new technologies and design patterns.
