@@ -22,6 +22,7 @@ import {
   DndListComponentProps,
   SortableItemProps,
 } from "@/app/components/Dnd/NestList/DndNestList.types";
+import DragButton from "../DragButton/DragButton";
 
 const SortableItem: React.FC<SortableItemProps> = ({
   itemId,
@@ -30,10 +31,9 @@ const SortableItem: React.FC<SortableItemProps> = ({
   isDragging,
   style,
 }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: itemId,
-    });
+  const { attributes, setNodeRef, transform, transition } = useSortable({
+    id: itemId,
+  });
 
   const calculateOpacity = () => {
     if (isDragging) {
@@ -55,8 +55,17 @@ const SortableItem: React.FC<SortableItemProps> = ({
   };
 
   return (
-    <div ref={setNodeRef} style={draggedStyle} {...attributes} {...listeners}>
-      {content}
+    <div
+      ref={setNodeRef}
+      style={draggedStyle}
+      {...attributes}
+      className="relative cursor-default"
+    >
+      <div className="flex-grow">{content}</div>
+
+      <div className="absolute -right-2 top-1/2 -translate-y-1/2 transform">
+        <DragButton id={itemId} isDragging={isDragging} />
+      </div>
     </div>
   );
 };

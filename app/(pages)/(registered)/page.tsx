@@ -1,10 +1,13 @@
 "use client";
 import Button from "@/app/components/Button/Button";
 import Test from "@/app/components/test";
+import { fetchCvData } from "@/app/lib/api/api";
 import { signOut } from "next-auth/react";
 import React from "react";
 
 export default function Home() {
+  /*   */
+
   return (
     <main>
       <Test />

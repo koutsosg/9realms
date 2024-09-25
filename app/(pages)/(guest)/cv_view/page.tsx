@@ -23,20 +23,20 @@ const LoginPage = async (): Promise<JSX.Element> => {
           buttonProps={{
             variant: "primary",
             size: "medium",
-            extraClasses: "fixed left-3/4 top-4",
+            extraClasses: "fixed right-4 top-4",
           }}
         >
           <CvPreview cv={cv} />
         </PrintComponent>
       </div>
-      {/*  <Positioner
+      <Positioner
         position="bottom-left"
         extraClasses="m-10"
         buttonLabel="enter"
         toggleable={true}
       >
         <Form />
-      </Positioner> */}
+      </Positioner>
     </>
   );
 };
