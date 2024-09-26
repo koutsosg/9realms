@@ -8,8 +8,8 @@ import {
   UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
-  restrictToParentElement,
   restrictToVerticalAxis,
+  restrictToWindowEdges,
 } from "@dnd-kit/modifiers";
 import {
   SortableContext,
@@ -63,7 +63,7 @@ const SortableItem: React.FC<SortableItemProps> = ({
     >
       <div className="flex-grow">{content}</div>
 
-      <div className="absolute -right-2 top-1/2 -translate-y-1/2 transform">
+      <div className="absolute -right-4 top-0 transform">
         <DragButton id={itemId} isDragging={isDragging} />
       </div>
     </div>
@@ -104,7 +104,7 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
   return (
     <DndContext
       id={contextId}
-      modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+      modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}

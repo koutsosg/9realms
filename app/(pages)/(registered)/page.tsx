@@ -1,22 +1,17 @@
-"use client";
-import Button from "@/app/components/Button/Button";
-import Test from "@/app/components/test";
 import { fetchCvData } from "@/app/lib/api/api";
-import { signOut } from "next-auth/react";
+import { SimplifiedCVResponse } from "@/app/lib/utils/CVService.types";
 import React from "react";
 
-export default function Home() {
-  /*   */
+const Home = async () => {
+  const cv: SimplifiedCVResponse = await fetchCvData(); // Fetch the CV data directly
 
   return (
-    <main>
-      <Test />
-      <Button
-        variant="danger"
-        onClick={() => signOut({ callbackUrl: "/cv_view" })}
-      >
-        Sign Out
-      </Button>
-    </main>
+    <CVProvider initialData={cv}>
+      {/* Pass the fetched CV data as initial context */}
+      <div className="flex flex-col px-10 py-[200px]">
+        <CVEdit /> {/* Use CVEdit directly without passing cv prop */}
+      </div>
+    </CVProvider>
   );
-}
+};
+export default Home;
