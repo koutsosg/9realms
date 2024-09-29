@@ -245,7 +245,7 @@ export interface SimplifiedCVResponse {
   title: string;
   user: SimplifiedUser;
   description: SimplifiedDescription;
-  sections: (JobSection | EducationSection | CertificationSection)[];
+  sections: RenderableSection[];
 }
 
 export type JobSection = SimplifiedCVSection<SimplifiedJob>;

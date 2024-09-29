@@ -1,16 +1,14 @@
 import React from "react";
 import SectionHeader from "../../CVPreview/SectionHeader/SectionHeader";
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
-import {
-  ItemType,
-  ActionType,
-} from "@/app/components/Dnd/NestList/DndNestList.types"; // Adjust this import
+import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types"; // Adjust this import
 import DateRange from "../../DateRange/DateRange";
+import { RenderableSection } from "@/app/lib/utils/CVService.types";
 
 // Define the props for the SectionEdit component
 interface SectionEditProps {
-  section: ItemType; // Adjust based on your actual ItemType definition
-  dispatch: React.Dispatch<ActionType>; // The dispatch function
+  section: RenderableSection; // Adjust based on your actual ItemType definition
+  dispatch: React.Dispatch<ActionType<RenderableSection>>; // The dispatch function
 }
 
 const SectionEdit: React.FC<SectionEditProps> = ({ section, dispatch }) => {

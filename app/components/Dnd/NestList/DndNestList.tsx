@@ -24,13 +24,13 @@ import {
 } from "@/app/components/Dnd/NestList/DndNestList.types";
 import DragButton from "../DragButton/DragButton";
 
-const SortableItem: React.FC<SortableItemProps> = ({
+const SortableItem = <T extends { id: UniqueIdentifier }>({
   itemId,
   content,
   activeId,
   isDragging,
   style,
-}) => {
+}: SortableItemProps<T>) => {
   const { attributes, setNodeRef, transform, transition } = useSortable({
     id: itemId,
   });
@@ -70,11 +70,11 @@ const SortableItem: React.FC<SortableItemProps> = ({
   );
 };
 
-const DndListComponent: React.FC<DndListComponentProps> = ({
+const DndListComponent = <T extends { id: UniqueIdentifier }>({
   items,
   children,
   dispatch,
-}) => {
+}: DndListComponentProps<T>) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
