@@ -9,9 +9,14 @@ import { RenderableSection } from "@/app/lib/utils/CVService.types";
 interface SectionEditProps {
   section: RenderableSection; // Adjust based on your actual ItemType definition
   dispatch: React.Dispatch<ActionType<RenderableSection>>; // The dispatch function
+  sections: RenderableSection[];
 }
 
-const SectionEdit: React.FC<SectionEditProps> = ({ section, dispatch }) => {
+const SectionEdit: React.FC<SectionEditProps> = ({
+  section,
+  dispatch,
+  sections,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <SectionHeader title={section.title} />
