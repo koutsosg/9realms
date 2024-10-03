@@ -1,7 +1,7 @@
 "use client";
 import { signOut } from "next-auth/react";
 import { RenderableSection } from "@/app/lib/utils/CVService.types";
-import LinkC from "../LinkC/LinkC";
+import LinkC from "@/app/components/LinkC/LinkC";
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
 import Button from "@/app/components/Button/Button";
 import { useCVContext } from "@/app/lib/providers/CVContext";

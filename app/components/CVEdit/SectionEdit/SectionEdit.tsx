@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SectionHeader from "@/app/components/CVPreview/SectionHeader/SectionHeader";
-import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types";
 import {
   CertificationSection,
   EducationSection,
@@ -10,7 +9,7 @@ import {
 import JobEditItem from "@/app/components/CVEdit/JobEditItem/JobEditItem";
 import EduEditItem from "@/app/components/CVEdit/EduEditItem/EduEditItem";
 import CertEditItem from "@/app/components/CVEdit/CertEditItem/CertEditItem";
-import Button from "../../Button/Button";
+import Button from "@/app/components/Button/Button";
 
 interface SectionEditProps {
   section: RenderableSection;

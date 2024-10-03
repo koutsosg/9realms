@@ -1,5 +1,5 @@
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
-import DateRange from "../../DateRange/DateRange";
+import DateRange from "@/app/components/DateRange/DateRange";
 import { EducationEditProps } from "@/app/components/CVEdit/EduEditItem/EduEditItem.types";
 import DescriptionEditLists from "@/app/components/CVEdit/DescriptionEdit/DescriptionEdit";
 

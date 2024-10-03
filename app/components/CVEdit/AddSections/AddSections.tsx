@@ -1,4 +1,4 @@
-import Button from "../../Button/Button";
+import Button from "@/app/components/Button/Button";
 interface AddSectionsProps {
   onAddSection: (type: string) => void; // Type for the function prop
 }
