@@ -1,5 +1,5 @@
 import SectionHeader from "@/app/components/CVPreview/SectionHeader/SectionHeader";
-import { SectionContentProps } from "@/app/components/CVPreview/Section/Section.Content.types";
+import { SectionContentProps } from "@/app/components/CVPreview/Section/SectionContent.types";
 
 const SectionContent = ({ title, items, renderItem }: SectionContentProps) => (
   <div className="flex flex-col gap-2">

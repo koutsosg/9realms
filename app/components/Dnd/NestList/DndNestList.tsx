@@ -8,8 +8,8 @@ import {
   UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
-  restrictToParentElement,
   restrictToVerticalAxis,
+  restrictToWindowEdges,
 } from "@dnd-kit/modifiers";
 import {
   SortableContext,
@@ -22,18 +22,18 @@ import {
   DndListComponentProps,
   SortableItemProps,
 } from "@/app/components/Dnd/NestList/DndNestList.types";
+import DragButton from "../DragButton/DragButton";
 
-const SortableItem: React.FC<SortableItemProps> = ({
+const SortableItem = <T extends { id: UniqueIdentifier }>({
   itemId,
   content,
   activeId,
   isDragging,
   style,
-}) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: itemId,
-    });
+}: SortableItemProps<T>) => {
+  const { attributes, setNodeRef, transform, transition } = useSortable({
+    id: itemId,
+  });
 
   const calculateOpacity = () => {
     if (isDragging) {
@@ -55,17 +55,26 @@ const SortableItem: React.FC<SortableItemProps> = ({
   };
 
   return (
-    <div ref={setNodeRef} style={draggedStyle} {...attributes} {...listeners}>
-      {content}
+    <div
+      ref={setNodeRef}
+      style={draggedStyle}
+      {...attributes}
+      className="relative cursor-default"
+    >
+      <div className="flex-grow">{content}</div>
+
+      <div className="absolute -right-4 top-0 transform">
+        <DragButton id={itemId} isDragging={isDragging} />
+      </div>
     </div>
   );
 };
 
-const DndListComponent: React.FC<DndListComponentProps> = ({
+const DndListComponent = <T extends { id: UniqueIdentifier }>({
   items,
   children,
   dispatch,
-}) => {
+}: DndListComponentProps<T>) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
@@ -95,7 +104,7 @@ const DndListComponent: React.FC<DndListComponentProps> = ({
   return (
     <DndContext
       id={contextId}
-      modifiers={[restrictToVerticalAxis, restrictToParentElement]}
+      modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}

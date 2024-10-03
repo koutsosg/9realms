@@ -21,7 +21,7 @@ const DateRange: React.FC<DateRangeProps> = ({
 
   const shouldShowDash = (start && end) || (start && !end && showPresent);
 
-  const classes = classNames("text-xs", className);
+  const classes = classNames("text-xxs sm:text-xs", className);
 
   return (
     <div className={classes}>

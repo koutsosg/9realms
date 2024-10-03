@@ -8,10 +8,6 @@ const DefaultLayout = async ({ children }: { children: React.ReactNode }) => {
     redirect("/cv_view");
   }
 
-  return (
-    <main className="">
-      <div className="">{children}</div>
-    </main>
-  );
+  return <main className="">{children}</main>;
 };
 export default DefaultLayout;

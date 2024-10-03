@@ -16,6 +16,7 @@ Here’s a quick reference:
 - [Input](./app/components/Input.md) - A flexible input field component that can handle various input types and validations.
 - [LinkC](./app/components/LinkC/README.md) - A reusable and flexible link component that handles internal, external, `mailto:`, and `tel:` links.
 - [Positioner](./app/components/Positioner.md) - A handy component for positioning elements in different corners of the viewport, making my layout more dynamic.
+- [Print](./app/components//Print/README.md) - For printing specific parts of a webpage without the clutter of headers or footers, uses `react-to-print` library
 - [Spinner](./app/components/Spinner/README.md) - A simple, customizable loading indicator that can be used independently or as part of other components.
 
 ## Future Plans

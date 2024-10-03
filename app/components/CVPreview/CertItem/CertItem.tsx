@@ -7,13 +7,19 @@ const CertItem = ({ cert }: CertItemProps) => (
   <div key={cert.id} className="flex flex-col gap-1">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-xs font-bold"> {cert.course}</h3>
-        <div className="text-xs font-semibold italic">{cert.institution}</div>
+        <h3 className="text-xxs font-bold sm:text-xs"> {cert.course}</h3>
+        <div className="text-xxs font-semibold italic sm:text-xs">
+          {cert.institution}
+        </div>
       </div>
       <div className="text-right">
         <DateRange end={cert.date_end} format="MMM yyyy" />
         {cert.verification && (
-          <LinkC href={cert.verification} className="flex text-xs" external>
+          <LinkC
+            href={cert.verification}
+            className="text-xxs flex sm:text-xs"
+            external
+          >
             Verification
           </LinkC>
         )}

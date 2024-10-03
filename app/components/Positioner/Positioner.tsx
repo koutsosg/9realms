@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, ReactNode } from "react";
 import classNames from "classnames";
+import Button from "@/app/components/Button/Button"; // Import your Button component
 
 interface PositionerProps {
-  corner?:
+  position?:
     | "top-left"
     | "top-right"
     | "bottom-left"
@@ -12,20 +13,24 @@ interface PositionerProps {
     | "bottom-middle"
     | "left-middle"
     | "right-middle";
-  toggleable?: boolean;
-  children: ReactNode; // All children, including the button if toggleable
-  extraClasses?: string;
+  toggleable?: boolean; // Whether to use the button to toggle content visibility
+  buttonProps?: React.ComponentProps<typeof Button>; // Props to pass to the internal Button component
+  children: ReactNode; // The content to be shown/hidden
+  extraClasses?: string; // Additional classes for styling
+  buttonLabel?: string; //Button Label if Button
 }
 
 const Positioner: React.FC<PositionerProps> = ({
-  corner = "top-right",
+  position = "top-right",
   toggleable = false,
+  buttonProps,
   children,
   extraClasses = "",
+  buttonLabel = "toggle" /* Default label if none provided */,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const cornerClasses = {
+  const positionsClasses = {
     "top-left": "top-0 left-0",
     "top-right": "top-0 right-0",
     "bottom-left": "bottom-0 left-0",
@@ -38,33 +43,36 @@ const Positioner: React.FC<PositionerProps> = ({
 
   const positionClasses = classNames(
     "fixed", // Fixed positioning
-    cornerClasses[corner], // Apply the corner position
+    positionsClasses[position], // Apply the positions position
     extraClasses, // Additional custom classes
   );
-
+  const buttonClasses = classNames(
+    positionsClasses[position],
+    "absolute",
+    buttonProps && buttonProps.extraClasses,
+  );
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const renderChildren = () => {
-    // If toggleable, assume the first child is the button and the rest is the content
-    if (toggleable && React.Children.count(children) > 1) {
-      const [button, ...content] = React.Children.toArray(children);
+    // If toggleable, render the button and content accordingly
+    if (toggleable) {
       return (
         <>
-          {/* Apply position classes to the button as well */}
-          <div
-            className={classNames(cornerClasses[corner], "absolute")}
+          <Button
+            {...buttonProps}
+            extraClasses={buttonClasses}
             onClick={handleToggle}
           >
-            {button}
-          </div>
-          {isOpen && <div className="m-6">{content}</div>}
+            {buttonLabel}
+          </Button>
+          {isOpen && <div className="m-6">{children}</div>}
         </>
       );
     }
 
-    return <div>{children}</div>;
+    return <div>{children}</div>; // Return children directly if not toggleable
   };
 
   return <div className={positionClasses}>{renderChildren()}</div>;

@@ -1,22 +1,22 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-export interface ItemType {
-  id: UniqueIdentifier;
-  [key: string]: any;
+export interface DndListComponentProps<T extends { id: UniqueIdentifier }> {
+  items: T[]; // Items will be of type T
+  children: (item: T) => React.ReactNode;
+  dispatch: React.Dispatch<ActionType<T>>;
 }
 
-export type ActionType = { type: "REORDER_ITEMS"; payload: ItemType[] };
+// Update ActionType to ensure that payload has an id
+export type ActionType<T extends { id: UniqueIdentifier }> = {
+  type: "REORDER_ITEMS";
+  payload: T[];
+};
 
-export interface SortableItemProps {
+// Generic SortableItemProps with id constraint
+export interface SortableItemProps<T extends { id: UniqueIdentifier }> {
   itemId: UniqueIdentifier;
   content: React.ReactNode;
   activeId: UniqueIdentifier | null;
   isDragging: boolean;
   style?: React.CSSProperties;
-}
-
-export interface DndListComponentProps {
-  items: ItemType[];
-  children: (item: ItemType) => React.ReactNode;
-  dispatch: React.Dispatch<ActionType>;
 }

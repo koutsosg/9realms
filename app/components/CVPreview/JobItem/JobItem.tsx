@@ -6,8 +6,10 @@ const JobItem = ({ job }: JobItemProps) => (
   <div key={job.id} className="flex flex-col gap-1">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-xs font-bold"> {job.position}</h3>
-        <div className="text-xs font-semibold italic">{job.company}</div>
+        <h3 className="text-xxs font-bold sm:text-xs"> {job.position}</h3>
+        <div className="text-xxs font-semibold italic sm:text-xs">
+          {job.company}
+        </div>
       </div>
       <div className="text-right">
         <DateRange
@@ -15,7 +17,7 @@ const JobItem = ({ job }: JobItemProps) => (
           end={job.date_end}
           format="MMM yyyy"
         />
-        <div className="text-xs">
+        <div className="text-xxs sm:text-xs">
           {job.city}, {job.country}
         </div>
       </div>

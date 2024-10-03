@@ -5,6 +5,7 @@ import CvPreview from "@/app/components/CVPreview/CVPreview";
 import { fetchCvData } from "@/app/lib/api/api";
 import Button from "@/app/components/Button/Button";
 import Positioner from "@/app/components/Positioner/Positioner";
+import PrintComponent from "@/app/components/Print/Print";
 
 const LoginPage = async (): Promise<JSX.Element> => {
   const session = await getServerSession();
@@ -17,12 +18,23 @@ const LoginPage = async (): Promise<JSX.Element> => {
   return (
     <>
       <div className="flex flex-col">
-        <CvPreview cv={cv} />
+        <PrintComponent
+          buttonLabel="Print CV"
+          buttonProps={{
+            variant: "primary",
+            size: "medium",
+            extraClasses: "fixed right-4 top-4",
+          }}
+        >
+          <CvPreview cv={cv} />
+        </PrintComponent>
       </div>
-      <Positioner corner="bottom-left" extraClasses="m-4">
-        {/*  <Button size="medium" variant="primary">
-          Enter
-        </Button> */}
+      <Positioner
+        position="bottom-left"
+        extraClasses="m-10"
+        buttonLabel="enter"
+        toggleable={true}
+      >
         <Form />
       </Positioner>
     </>
