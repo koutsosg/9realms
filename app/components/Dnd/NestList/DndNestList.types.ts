@@ -12,7 +12,7 @@ export type ActionType<T extends { id: UniqueIdentifier }> = {
 };
 
 // Generic SortableItemProps with id constraint
-export interface SortableItemProps<T extends { id: UniqueIdentifier }> {
+export interface SortableItemProps {
   itemId: UniqueIdentifier;
   content: React.ReactNode;
   activeId: UniqueIdentifier | null;

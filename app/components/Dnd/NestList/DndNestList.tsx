@@ -9,7 +9,6 @@ import {
 import {
   restrictToVerticalAxis,
   restrictToWindowEdges,
-  restrictToWindowEdges,
 } from "@dnd-kit/modifiers";
 import {
   SortableContext,
@@ -66,27 +65,14 @@ const SortableItem = ({
       <div className="absolute -right-4 top-0 transform">
         <DragButton id={itemId} isDragging={isDragging} />
       </div>
-    <div
-      ref={setNodeRef}
-      style={draggedStyle}
-      {...attributes}
-      className="relative cursor-default"
-    >
-      <div className="flex-grow">{content}</div>
-
-      <div className="absolute -right-4 top-0 transform">
-        <DragButton id={itemId} isDragging={isDragging} />
-      </div>
     </div>
   );
 };
 
 const DndListComponent = <T extends { id: UniqueIdentifier }>({
-const DndListComponent = <T extends { id: UniqueIdentifier }>({
   items,
   children,
   dispatch,
-}: DndListComponentProps<T>) => {
 }: DndListComponentProps<T>) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);

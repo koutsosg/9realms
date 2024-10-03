@@ -11,7 +11,6 @@ export type CVAction<T extends RenderableSection> =
   | { type: "DELETE_ITEM"; payload: { id: UniqueIdentifier } }
   | { type: "ADD_SECTION"; payload: T };
 
-// The main reducer function
 export const cvReducer = (
   state: SimplifiedCVResponse,
   action: CVAction<any>,
