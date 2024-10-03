@@ -3,10 +3,13 @@ import {
   RenderableSection,
   SimplifiedCVResponse,
 } from "@/app/lib/utils/CVService.types";
+import { UniqueIdentifier } from "@dnd-kit/core";
 
 // Define the action types
-export type CVAction<T extends RenderableSection> = ActionType<T>; // Includes DND action
-/*  | { type: "UPDATE_CV"; payload: Partial<SimplifiedCVResponse> }; // Action for other CV updates */
+export type CVAction<T extends RenderableSection> =
+  | ActionType<T>
+  | { type: "DELETE_ITEM"; payload: { id: UniqueIdentifier } }
+  | { type: "ADD_SECTION"; payload: T };
 
 // The main reducer function
 export const cvReducer = (
@@ -19,7 +22,15 @@ export const cvReducer = (
         ...state,
         sections: action.payload,
       };
-
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        sections: state.sections.filter(
+          (section) => section.id !== action.payload.id,
+        ),
+      };
+    case "ADD_SECTION":
+      return { ...state, sections: [...state.sections, action.payload] };
     default:
       return state;
   }

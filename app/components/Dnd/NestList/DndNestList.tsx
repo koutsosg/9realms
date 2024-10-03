@@ -3,7 +3,6 @@ import {
   closestCenter,
   DndContext,
   DragEndEvent,
-  DragOverlay,
   DragStartEvent,
   UniqueIdentifier,
 } from "@dnd-kit/core";
@@ -24,13 +23,13 @@ import {
 } from "@/app/components/Dnd/NestList/DndNestList.types";
 import DragButton from "@/app/components/Dnd/DragButton/DragButton";
 
-const SortableItem = <T extends { id: UniqueIdentifier }>({
+const SortableItem = ({
   itemId,
   content,
   activeId,
   isDragging,
   style,
-}: SortableItemProps<T>) => {
+}: SortableItemProps) => {
   const { attributes, setNodeRef, transform, transition } = useSortable({
     id: itemId,
   });

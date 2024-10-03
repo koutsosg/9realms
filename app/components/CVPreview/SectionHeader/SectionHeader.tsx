@@ -1,7 +1,7 @@
 import { SectionHeaderProps } from "@/app/components/CVPreview/SectionHeader/SectionHeader.types";
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title }) => (
-  <div>
+  <div className="w-full">
     <h2 className="text-xs font-semibold uppercase text-primary_3 sm:text-sm">
       {title}
     </h2>

@@ -7,9 +7,12 @@ import Button from "@/app/components/Button/Button";
 import { useCVContext } from "@/app/lib/providers/CVContext";
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList";
 import SectionEdit from "@/app/components/CVEdit/SectionEdit/SectionEdit";
+import { generateBlankSection } from "@/app/lib/utils/generateBlanks";
+import AddSections from "./AddSections/AddSections";
 
 const CVEdit = () => {
   const { state, dispatch } = useCVContext();
+  console.log(state);
   const renderSection = (section: RenderableSection) => {
     switch (section.type) {
       case "job":
@@ -43,6 +46,11 @@ const CVEdit = () => {
       default:
         return null;
     }
+  };
+
+  const handleAddSection = (type: string) => {
+    const newSection = generateBlankSection(type);
+    dispatch({ type: "ADD_SECTION", payload: newSection });
   };
   return (
     <div className="flex flex-col items-center px-2">
@@ -79,6 +87,7 @@ const CVEdit = () => {
             {(section) => renderSection(section)}
           </DndListComponent>
         </div>
+        <AddSections onAddSection={handleAddSection} />
       </div>
       <Button
         variant="danger"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionHeader from "@/app/components/CVPreview/SectionHeader/SectionHeader";
 import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types";
 import {
@@ -10,10 +10,11 @@ import {
 import JobEditItem from "@/app/components/CVEdit/JobEditItem/JobEditItem";
 import EduEditItem from "@/app/components/CVEdit/EduEditItem/EduEditItem";
 import CertEditItem from "@/app/components/CVEdit/CertEditItem/CertEditItem";
+import Button from "../../Button/Button";
 
 interface SectionEditProps {
   section: RenderableSection;
-  dispatch: React.Dispatch<ActionType<RenderableSection>>;
+  dispatch: React.Dispatch<any>;
   sections: RenderableSection[];
 }
 const isJobSection = (section: RenderableSection): section is JobSection => {
@@ -31,6 +32,7 @@ const isEducationSection = (
 ): section is EducationSection => {
   return section.type === "education";
 };
+
 const SectionEdit: React.FC<SectionEditProps> = ({
   section,
   dispatch,
@@ -65,9 +67,34 @@ const SectionEdit: React.FC<SectionEditProps> = ({
       );
     }
   };
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
+
+  const handleDelete = () => {
+    dispatch({ type: "DELETE_ITEM", payload: { id: section.id } });
+  };
   return (
     <div className="flex flex-col gap-2">
-      <SectionHeader title={section.title} />
+      <div
+        className="flex w-full gap-2"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {isHovered && (
+          <Button
+            variant="danger"
+            size="none"
+            extraClasses="self-start px-1 text-sm"
+            onClick={handleDelete}
+          >
+            d
+          </Button>
+        )}
+
+        <SectionHeader title={section.title} />
+      </div>
       <div className="flex flex-col gap-3">{renderSectionContent()}</div>
     </div>
   );
