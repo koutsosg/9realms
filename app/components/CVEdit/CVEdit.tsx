@@ -1,18 +1,12 @@
 "use client";
-
-import {
-  RenderableSection,
-  SimplifiedCVResponse,
-} from "../../lib/utils/CVService.types";
-import LinkC from "../LinkC/LinkC";
-import DescriptionList from "../CVPreview/Description/Description";
-
-import Button from "../Button/Button";
 import { signOut } from "next-auth/react";
-
+import { RenderableSection } from "@/app/lib/utils/CVService.types";
+import LinkC from "../LinkC/LinkC";
+import DescriptionList from "@/app/components/CVPreview/Description/Description";
+import Button from "@/app/components/Button/Button";
 import { useCVContext } from "@/app/lib/providers/CVContext";
-import DndListComponent from "../Dnd/NestList/DndNestList";
-import SectionEdit from "./SectionEdit/SectionEdit";
+import DndListComponent from "@/app/components/Dnd/NestList/DndNestList";
+import SectionEdit from "@/app/components/CVEdit/SectionEdit/SectionEdit";
 
 const CVEdit = () => {
   const { state, dispatch } = useCVContext();
@@ -21,31 +15,28 @@ const CVEdit = () => {
       case "job":
         return (
           <SectionEdit
-            key={section.id} // Make sure to give each section a unique key
+            key={section.id}
             section={section}
             dispatch={dispatch}
             sections={state.sections}
-            /*    renderItem={(job) => <JobItem key={job.id} job={job} />} */
           />
         );
       case "certification":
         return (
           <SectionEdit
-            key={section.id} // Make sure to give each section a unique key
+            key={section.id}
             section={section}
             dispatch={dispatch}
             sections={state.sections}
-            /*       renderItem={(cert) => <CertItem key={cert.id} cert={cert} />} */
           />
         );
       case "education":
         return (
           <SectionEdit
-            key={section.id} // Make sure to give each section a unique key
+            key={section.id}
             section={section}
             dispatch={dispatch}
             sections={state.sections}
-            /*             renderItem={(edu) => <EduItem key={edu.id} edu={edu} />} */
           />
         );
 

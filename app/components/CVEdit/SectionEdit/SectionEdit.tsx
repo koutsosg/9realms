@@ -1,17 +1,15 @@
 import React from "react";
-import SectionHeader from "../../CVPreview/SectionHeader/SectionHeader";
-import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
-import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types"; // Adjust this import
-import DateRange from "../../DateRange/DateRange";
+import SectionHeader from "@/app/components/CVPreview/SectionHeader/SectionHeader";
+import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types";
 import {
   CertificationSection,
   EducationSection,
   JobSection,
   RenderableSection,
 } from "@/app/lib/utils/CVService.types";
-import JobEditItem from "../JobEditItem/JobEditItem";
-import EduEditItem from "../EduEditItem/EduEditItem";
-import CertEditItem from "../CertEditItem/CertEditItem";
+import JobEditItem from "@/app/components/CVEdit/JobEditItem/JobEditItem";
+import EduEditItem from "@/app/components/CVEdit/EduEditItem/EduEditItem";
+import CertEditItem from "@/app/components/CVEdit/CertEditItem/CertEditItem";
 
 interface SectionEditProps {
   section: RenderableSection;

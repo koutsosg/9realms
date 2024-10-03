@@ -1,8 +1,8 @@
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
-import DateRange from "../../DateRange/DateRange";
+import DateRange from "@/app/components/DateRange/DateRange";
 import { CertificationEditProps } from "./CertEditItem.types";
-import LinkC from "../../LinkC/LinkC";
-import DescriptionList from "../DescriptionEdit/DescritpionEdit";
+import LinkC from "@/app/components/LinkC/LinkC";
+import DescriptionEditLists from "@/app/components/CVEdit/DescriptionEdit/DescriptionEdit";
 
 const CertEditItem: React.FC<CertificationEditProps> = ({
   section,
@@ -44,7 +44,7 @@ const CertEditItem: React.FC<CertificationEditProps> = ({
               )}
             </div>
           </div>
-          <DescriptionList
+          <DescriptionEditLists
             items={cert.description}
             dispatch={dispatch}
             sectionId={section.id}

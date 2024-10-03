@@ -22,7 +22,7 @@ import {
   DndListComponentProps,
   SortableItemProps,
 } from "@/app/components/Dnd/NestList/DndNestList.types";
-import DragButton from "../DragButton/DragButton";
+import DragButton from "@/app/components/Dnd/DragButton/DragButton";
 
 const SortableItem = <T extends { id: UniqueIdentifier }>({
   itemId,

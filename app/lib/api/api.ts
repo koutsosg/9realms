@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { simplifyCVResponse } from "../utils/CvService";
+import { simplifyCVResponse } from "@/app/lib/utils/CvService";
 
 const API_URL = process.env.API_URL;
 

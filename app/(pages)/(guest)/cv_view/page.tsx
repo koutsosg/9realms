@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import Form from "@/app/(pages)/(guest)/cv_view/form";
 import CvPreview from "@/app/components/CVPreview/CVPreview";
 import { fetchCvData } from "@/app/lib/api/api";
-import Button from "@/app/components/Button/Button";
 import Positioner from "@/app/components/Positioner/Positioner";
 import PrintComponent from "@/app/components/Print/Print";
 

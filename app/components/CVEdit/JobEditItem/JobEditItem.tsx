@@ -1,7 +1,7 @@
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
-import { JobEditProps } from "./JobEditItem.types";
-import DateRange from "../../DateRange/DateRange";
-import DescriptionList from "../DescriptionEdit/DescritpionEdit";
+import { JobEditProps } from "@/app/components/CVEdit/JobEditItem/JobEditItem.types";
+import DateRange from "@/app/components/DateRange/DateRange";
+import DescriptionEditLists from "@/app/components/CVEdit/DescriptionEdit/DescriptionEdit";
 
 const JobEditItem: React.FC<JobEditProps> = ({
   section,
@@ -41,7 +41,7 @@ const JobEditItem: React.FC<JobEditProps> = ({
               </div>
             </div>
           </div>
-          <DescriptionList
+          <DescriptionEditLists
             items={job.description}
             dispatch={dispatch}
             sectionId={section.id}

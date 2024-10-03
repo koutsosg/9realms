@@ -1,5 +1,5 @@
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
-import { EduItemProps } from "./EduItem.types";
+import { EduItemProps } from "@/app/components/CVPreview/EduItem/EduItem.types";
 import DateRange from "@/app/components/DateRange/DateRange";
 
 const EduItem = ({ edu }: EduItemProps) => (

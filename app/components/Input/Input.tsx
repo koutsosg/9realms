@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Button from "../Button/Button";
+import Button from "@/app/components/Button/Button";
 import styles from "@/app/components/Input/input.module.scss";
 import classNames from "classnames";
 

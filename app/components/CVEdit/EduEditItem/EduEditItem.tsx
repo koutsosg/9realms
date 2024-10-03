@@ -1,7 +1,7 @@
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList"; // Import your DnD component
 import DateRange from "../../DateRange/DateRange";
-import { EducationEditProps } from "./EduEditItem.types";
-import DescriptionList from "../DescriptionEdit/DescritpionEdit";
+import { EducationEditProps } from "@/app/components/CVEdit/EduEditItem/EduEditItem.types";
+import DescriptionEditLists from "@/app/components/CVEdit/DescriptionEdit/DescriptionEdit";
 
 const EduEditItem: React.FC<EducationEditProps> = ({
   section,
@@ -43,7 +43,7 @@ const EduEditItem: React.FC<EducationEditProps> = ({
               </div>
             </div>
           </div>
-          <DescriptionList
+          <DescriptionEditLists
             items={edu.description}
             dispatch={dispatch}
             sectionId={section.id}

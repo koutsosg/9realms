@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import Button from "@/app/components/Button/Button";
-import { PrintComponentProps } from "./Print.types";
+import { PrintComponentProps } from "@/app/components/Print/Print.types";
 
 const PrintComponent: React.FC<PrintComponentProps> = ({
   buttonLabel,

@@ -1,6 +1,6 @@
 import DescriptionList from "@/app/components/CVPreview/Description/Description";
-import { CertItemProps } from "./CertItem.types";
-import DateRange from "../../DateRange/DateRange";
+import { CertItemProps } from "@/app/components/CVPreview/CertItem/CertItem.types";
+import DateRange from "@/app/components/DateRange/DateRange";
 import LinkC from "@/app/components/LinkC/LinkC";
 
 const CertItem = ({ cert }: CertItemProps) => (
@@ -17,7 +17,7 @@ const CertItem = ({ cert }: CertItemProps) => (
         {cert.verification && (
           <LinkC
             href={cert.verification}
-            className="text-xxs flex sm:text-xs"
+            className="flex text-xxs sm:text-xs"
             external
           >
             Verification

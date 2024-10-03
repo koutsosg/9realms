@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "@/app/components/Button/Button";
 
 export interface PrintComponentProps extends React.HTMLProps<HTMLDivElement> {
   buttonLabel: string;
