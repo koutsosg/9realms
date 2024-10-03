@@ -11,7 +11,8 @@ export type ActionType<T extends { id: UniqueIdentifier }> = {
   payload: T[];
 };
 
-export interface SortableItemProps {
+// Generic SortableItemProps with id constraint
+export interface SortableItemProps<T extends { id: UniqueIdentifier }> {
   itemId: UniqueIdentifier;
   content: React.ReactNode;
   activeId: UniqueIdentifier | null;
