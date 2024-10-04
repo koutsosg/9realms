@@ -13,13 +13,16 @@ const CertEditItem: React.FC<CertificationEditProps> = ({
     <DndListComponent
       items={section.data}
       dispatch={(action) => {
-        const updatedItems = sections.map((i) =>
-          i.id === section.id ? { ...i, data: action.payload } : i,
-        );
-        dispatch({
-          type: "REORDER_ITEMS",
-          payload: updatedItems,
-        });
+        if (action.type === "REORDER_ITEMS") {
+          const updatedItems = sections.map((i) =>
+            i.id === section.id ? { ...i, data: action.payload } : i,
+          );
+
+          dispatch({
+            type: "REORDER_ITEMS",
+            payload: updatedItems,
+          });
+        }
       }}
     >
       {(cert) => (

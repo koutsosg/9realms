@@ -73,7 +73,7 @@ const SectionEdit: React.FC<SectionEditProps> = ({
   const handleMouseLeave = () => setIsHovered(false);
 
   const handleDelete = () => {
-    dispatch({ type: "DELETE_ITEM", payload: { id: section.id } });
+    dispatch({ type: "DELETE_SECTION", payload: { id: section.id } });
   };
   return (
     <div className="flex flex-col gap-2">
