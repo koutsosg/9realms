@@ -12,8 +12,8 @@ import { UniqueIdentifier } from "@dnd-kit/core";
 export type CVAction<T extends RenderableSection> =
   | ActionType<T>
   | { type: "DELETE_SECTION"; payload: { id: UniqueIdentifier } }
-  | { type: "ADD_SECTION"; payload: T };
-  | { type: "ADD_ITEM"; payload: T };
+  | { type: "ADD_SECTION"; payload: T }
+  | { type: "ADD_ITEM"; payload: { newItem: T; sectionId: UniqueIdentifier } };
 
 export const cvReducer = (
   state: SimplifiedCVResponse,
@@ -70,9 +70,23 @@ export const cvReducer = (
       };
     }
     case "ADD_ITEM": {
-      const { item, sectionId } = action.payload;
-      return { ...state, sections: [...state.sections, action.payload] };
+      const { newItem, sectionId } = action.payload;
+      console.log("add", newItem, sectionId);
+      return {
+        ...state,
+        sections: state.sections.map((section) => {
+          if (section.id === sectionId) {
+            console.log(section.id);
+            return {
+              ...section,
+              data: [...section.data, newItem],
+            };
+          }
+          return section;
+        }),
+      };
     }
+
     default:
       return state;
   }

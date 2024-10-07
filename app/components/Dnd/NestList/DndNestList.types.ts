@@ -16,7 +16,6 @@ export type ActionType<T extends { id: UniqueIdentifier }> =
       payload: { sectionId: UniqueIdentifier; itemId: UniqueIdentifier };
     };
 
-// Generic SortableItemProps with id constraint
 export interface SortableItemProps {
   itemId: UniqueIdentifier;
   content: React.ReactNode;

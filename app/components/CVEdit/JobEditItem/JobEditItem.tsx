@@ -74,6 +74,7 @@ const JobEditItem: React.FC<JobEditProps> = ({
               </div>
             </div>
           </div>
+
           <DescriptionEditLists
             items={job.description}
             dispatch={dispatch}

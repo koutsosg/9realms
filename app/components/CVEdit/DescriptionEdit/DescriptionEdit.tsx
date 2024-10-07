@@ -15,9 +15,10 @@ const DescriptionEditList: React.FC<DescriptionListProps> = ({
   sections,
   itemId,
 }) => {
+  if (!items) return <></>;
   return (
     <DndListComponent
-      items={items.description_content}
+      items={items?.description_content}
       dispatch={(action) => {
         const updatedSections = sections.map((sec) => {
           if (sec.id === sectionId) {

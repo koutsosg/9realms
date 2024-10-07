@@ -109,7 +109,7 @@ const DndListComponent = <T extends { id: UniqueIdentifier }>({
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        {items.map((item) => {
+        {items?.map((item) => {
           return (
             <SortableItem
               key={item?.id}

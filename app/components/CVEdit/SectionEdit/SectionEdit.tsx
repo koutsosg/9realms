@@ -77,9 +77,10 @@ const SectionEdit: React.FC<SectionEditProps> = ({
     dispatch({ type: "DELETE_SECTION", payload: { id: section.id } });
   };
 
-  const handleAddItem = (sectionType: string, SectionId: UniqueIdentifier) => {
+  const handleAddItem = (sectionType: string, sectionId: UniqueIdentifier) => {
     const newItem = generateBlankItem(sectionType);
-    dispatch({ type: "ADD_ITEM", payload: newItem, SectionId });
+    dispatch({ type: "ADD_ITEM", payload: { newItem, sectionId } });
+    console.log("newItem", sectionId, sectionType);
   };
   return (
     <div className="flex flex-col gap-2">
