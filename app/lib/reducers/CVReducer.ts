@@ -13,6 +13,7 @@ export type CVAction<T extends RenderableSection> =
   | ActionType<T>
   | { type: "DELETE_SECTION"; payload: { id: UniqueIdentifier } }
   | { type: "ADD_SECTION"; payload: T };
+  | { type: "ADD_ITEM"; payload: T };
 
 export const cvReducer = (
   state: SimplifiedCVResponse,
@@ -67,6 +68,10 @@ export const cvReducer = (
           return section;
         }),
       };
+    }
+    case "ADD_ITEM": {
+      const { item, sectionId } = action.payload;
+      return { ...state, sections: [...state.sections, action.payload] };
     }
     default:
       return state;

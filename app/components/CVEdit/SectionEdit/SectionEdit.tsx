@@ -10,6 +10,8 @@ import JobEditItem from "@/app/components/CVEdit/JobEditItem/JobEditItem";
 import EduEditItem from "@/app/components/CVEdit/EduEditItem/EduEditItem";
 import CertEditItem from "@/app/components/CVEdit/CertEditItem/CertEditItem";
 import Button from "@/app/components/Button/Button";
+import { generateBlankItem } from "@/app/lib/utils/generateBlanks";
+import { UniqueIdentifier } from "@dnd-kit/core";
 
 interface SectionEditProps {
   section: RenderableSection;
@@ -74,6 +76,11 @@ const SectionEdit: React.FC<SectionEditProps> = ({
   const handleDelete = () => {
     dispatch({ type: "DELETE_SECTION", payload: { id: section.id } });
   };
+
+  const handleAddItem = (sectionType: string, SectionId: UniqueIdentifier) => {
+    const newItem = generateBlankItem(sectionType);
+    dispatch({ type: "ADD_ITEM", payload: newItem, SectionId });
+  };
   return (
     <div className="flex flex-col gap-2">
       <div
@@ -95,6 +102,14 @@ const SectionEdit: React.FC<SectionEditProps> = ({
         <SectionHeader title={section.title} />
       </div>
       <div className="flex flex-col gap-3">{renderSectionContent()}</div>
+      <Button
+        variant="primary"
+        size="none"
+        extraClasses=" px-1 text-sm"
+        onClick={() => handleAddItem(section.type, section.id)}
+      >
+        Add experience
+      </Button>
     </div>
   );
 };
