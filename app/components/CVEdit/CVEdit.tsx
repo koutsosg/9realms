@@ -12,7 +12,6 @@ import AddSections from "@/app/components/CVEdit/AddSections/AddSections";
 
 const CVEdit = () => {
   const { state, dispatch } = useCVContext();
-  console.log(state);
   const renderSection = (section: RenderableSection) => {
     switch (section.type) {
       case "job":

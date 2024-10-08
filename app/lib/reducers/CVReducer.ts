@@ -74,12 +74,10 @@ export const cvReducer = (
 
     case "ADD_ITEM": {
       const { newItem, sectionId } = action.payload;
-      console.log("add", newItem, sectionId);
       return {
         ...state,
         sections: state.sections.map((section) => {
           if (section.id === sectionId) {
-            console.log(section.id);
             return {
               ...section,
               data: [...section.data, newItem],
