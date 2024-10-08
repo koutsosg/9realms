@@ -8,7 +8,7 @@ import { useCVContext } from "@/app/lib/providers/CVContext";
 import DndListComponent from "@/app/components/Dnd/NestList/DndNestList";
 import SectionEdit from "@/app/components/CVEdit/SectionEdit/SectionEdit";
 import { generateBlankSection } from "@/app/lib/utils/generateBlanks";
-import AddSections from "./AddSections/AddSections";
+import AddSections from "@/app/components/CVEdit/AddSections/AddSections";
 
 const CVEdit = () => {
   const { state, dispatch } = useCVContext();

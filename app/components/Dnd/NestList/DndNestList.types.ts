@@ -1,3 +1,4 @@
+import { SimplifiedDescriptionContent } from "@/app/lib/utils/CVService.types";
 import { UniqueIdentifier } from "@dnd-kit/core";
 
 export interface DndListComponentProps<T extends { id: UniqueIdentifier }> {
@@ -14,6 +15,21 @@ export type ActionType<T extends { id: UniqueIdentifier }> =
   | {
       type: "DELETE_ITEM";
       payload: { sectionId: UniqueIdentifier; itemId: UniqueIdentifier };
+    }
+  | {
+      type: "ADD_DESC";
+      payload: {
+        newDesc: SimplifiedDescriptionContent;
+        itemId: UniqueIdentifier;
+        descId: UniqueIdentifier;
+      };
+    }
+  | {
+      type: "DELETE_DESC";
+      payload: {
+        itemId: UniqueIdentifier;
+        descId: UniqueIdentifier;
+      };
     };
 
 export interface SortableItemProps {

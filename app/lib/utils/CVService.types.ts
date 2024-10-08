@@ -239,6 +239,10 @@ interface SimplifiedCVSection<DataType> {
   type: string;
   data: DataType[];
 }
+export type SimpliFiedCVSections =
+  | SimplifiedJob
+  | SimplifiedEducation
+  | SimplifiedCertification;
 
 export interface SimplifiedCVResponse {
   id: string;

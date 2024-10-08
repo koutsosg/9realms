@@ -19,7 +19,7 @@ import {
   UrlType,
   User,
   UserUrl,
-} from "./CVService.types";
+} from "@/app/lib/utils/CVService.types";
 
 const simplifyDescriptionContent = (
   descriptionContent: DescriptionContent[],

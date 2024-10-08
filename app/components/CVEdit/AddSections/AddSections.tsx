@@ -1,6 +1,6 @@
 import Button from "@/app/components/Button/Button";
 interface AddSectionsProps {
-  onAddSection: (type: string) => void; // Type for the function prop
+  onAddSection: (type: string) => void; 
 }
 const AddSections: React.FC<AddSectionsProps> = ({ onAddSection }) => {
   return (

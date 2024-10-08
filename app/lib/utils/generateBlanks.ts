@@ -1,21 +1,21 @@
-import { RenderableSection } from "./CVService.types";
+import { RenderableSection } from "@/app/lib/utils/CVService.types";
 
-// Helper function to generate description
-const generateDescription = () => ({
+export const generateDescriptionContent = () => ({
+  collectionId: "ijp29fg63v639me",
+  collectionName: "description_content",
+  content: [
+    "Platform Development: Contributed to the development of MySrapp, a platform for tutors to create video instrument lessons,\r\nintegrating frontend with a Strapi-based backend using Next.js for server-side rendering and performance optimization.",
+  ],
   id: crypto.randomUUID(),
-  bullets: true,
+  updated: "2024-09-02 08:08:28.617Z",
+});
+// Helper function to generate description
+export const generateDescription = () => ({
+  id: crypto.randomUUID(),
+  bullets: false,
   collectionId: "4lsm2j2z412ydq3",
   collectionName: "descriptions",
-  description_content: [
-    {
-      collectionId: "ijp29fg63v639me",
-      collectionName: "description_content",
-      content:
-        "Platform Development: Contributed to the development of MySrapp, a platform for tutors to create video instrument lessons,\r\nintegrating frontend with a Strapi-based backend using Next.js for server-side rendering and performance optimization.",
-      id: "83vvr7df6uc0gs6",
-      updated: "2024-09-02 08:08:28.617Z",
-    },
-  ],
+  description_content: [generateDescriptionContent()],
 });
 
 // Function to generate blank item based on type

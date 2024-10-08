@@ -1,6 +1,6 @@
 "use client";
 import React, { ReactNode, useReducer } from "react";
-import { CVContext } from "./CVContext"; // Import the context
+import { CVContext } from "@/app/lib/providers/CVContext"; 
 import { SimplifiedCVResponse } from "@/app/lib/utils/CVService.types";
 import { cvReducer } from "@/app/lib/reducers/CVReducer";
 
