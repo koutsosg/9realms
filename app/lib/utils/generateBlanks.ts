@@ -6,6 +6,7 @@ export const generateDescriptionContent = () => ({
   content: ["Add description content"],
   id: crypto.randomUUID(),
 });
+// Helper function to generate
 // Helper function to generate description
 export const generateDescription = () => ({
   id: crypto.randomUUID(),
