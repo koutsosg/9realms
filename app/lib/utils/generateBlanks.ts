@@ -3,11 +3,8 @@ import { RenderableSection } from "@/app/lib/utils/CVService.types";
 export const generateDescriptionContent = () => ({
   collectionId: "ijp29fg63v639me",
   collectionName: "description_content",
-  content: [
-    "Platform Development: Contributed to the development of MySrapp, a platform for tutors to create video instrument lessons,\r\nintegrating frontend with a Strapi-based backend using Next.js for server-side rendering and performance optimization.",
-  ],
+  content: ["Add description content"],
   id: crypto.randomUUID(),
-  updated: "2024-09-02 08:08:28.617Z",
 });
 // Helper function to generate description
 export const generateDescription = () => ({
@@ -23,34 +20,32 @@ export const generateBlankItem = (type: string) => {
   const itemTemplates: { [key: string]: () => any } = {
     job: () => ({
       id: crypto.randomUUID(),
-      city: "Athens",
-      company: "Wild Wild Web2",
-      company_url: "https://www.wildwildweb.gr/en/",
-      country: "Greece2",
-      date_end: "",
-      date_start: "2023-11-01 00:00:00.000Z",
+      city: "add city name",
+      company: "add company name",
+      company_url: "add company url",
+      country: "add country name",
+      date_end: "add job end date",
+      date_start: "add job start date",
       description: generateDescription(),
-      position: "React Ecosystem Developer2",
+      position: "add position title",
     }),
     education: () => ({
       id: crypto.randomUUID(),
-      city: "Athens",
-      country: "Greece2",
-      date_end: "2023-11-01 00:00:00.000Z",
-      date_start: "2023-11-01 00:00:00.000Z",
-      degree: "",
+      city: "add city name",
+      country: "add country name",
+      date_end: "add education end date",
+      date_start: "add education start date",
+      degree: "degree yes or no",
       description: generateDescription(),
-      field_of_study: "Computer Engineering",
-      institution: "Technological Education Institute of Piraeus",
+      field_of_study: "Add field of study",
+      institution: "Add institution name",
     }),
     certification: () => ({
       id: crypto.randomUUID(),
-      course: "Full-Stack Web Development with React (Specialization)",
-      date_end: "2022-11-01 12:00:00.000Z",
-      institution:
-        "The Hong Kong University of Science and Technology / Coursera",
-      verification:
-        "https://www.coursera.org/account/accomplishments/specialization/MUYWD9V2PS4U",
+      course: "add course title",
+      date_end: "add courses end date",
+      institution: "Add courses institution name",
+      verification: "verification link",
       description: generateDescription(),
     }),
   };
