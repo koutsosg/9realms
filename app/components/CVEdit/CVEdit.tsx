@@ -12,6 +12,7 @@ import AddSections from "@/app/components/CVEdit/AddSections/AddSections";
 
 const CVEdit = () => {
   const { state, dispatch } = useCVContext();
+  const cv = state?.data;
   const renderSection = (section: RenderableSection) => {
     switch (section.type) {
       case "job":
@@ -20,7 +21,7 @@ const CVEdit = () => {
             key={section.id}
             section={section}
             dispatch={dispatch}
-            sections={state.sections}
+            sections={cv?.sections}
           />
         );
       case "certification":
@@ -29,7 +30,7 @@ const CVEdit = () => {
             key={section.id}
             section={section}
             dispatch={dispatch}
-            sections={state.sections}
+            sections={cv?.sections}
           />
         );
       case "education":
@@ -38,7 +39,7 @@ const CVEdit = () => {
             key={section.id}
             section={section}
             dispatch={dispatch}
-            sections={state.sections}
+            sections={cv?.sections}
           />
         );
 
@@ -51,6 +52,7 @@ const CVEdit = () => {
     const newSection = generateBlankSection(type);
     dispatch({ type: "ADD_SECTION", payload: newSection });
   };
+
   return (
     <div className="flex flex-col items-center px-2">
       <div className="flex max-w-a4 flex-col gap-3 bg-white px-2 py-2 text-primary_3 sm:px-4 sm:py-3 md:px-8 md:py-6">
@@ -58,31 +60,31 @@ const CVEdit = () => {
         <div className="flex flex-col gap-2">
           <div className="flex flex-col justify-between gap-2 sm:flex-row">
             <div className="text-nowrap text-sm font-semibold uppercase sm:text-lg md:text-xl">
-              {state?.user.name} {state?.user.lastname}
+              {cv?.user.name} {cv?.user.lastname}
             </div>
 
             <div className="flex items-center gap-1 text-nowrap text-xs md:text-sm">
               <p>
-                {state?.user.city}, {state?.user.country}
+                {cv?.user.city}, {cv?.user.country}
               </p>
               |
-              <LinkC href={`tel:${state?.user.phone}`} />|
-              <LinkC href={`mailto:${state?.user.email}`} />|
+              <LinkC href={`tel:${cv?.user.phone}`} />|
+              <LinkC href={`mailto:${cv?.user.email}`} />|
               <LinkC href={`/`}>Linkedin</LinkC>
             </div>
           </div>
           {/** title-Description */}
           <div className="flex flex-col gap-1">
-            <h1 className="text-xs font-semibold sm:text-sm">{state?.title}</h1>
+            <h1 className="text-xs font-semibold sm:text-sm">{cv?.title}</h1>
             <DescriptionList
-              content={state?.description.description_content || []}
-              bullets={state?.description.bullets}
+              content={cv?.description.description_content || []}
+              bullets={cv?.description.bullets}
             />
           </div>
         </div>
         {/**Sections */}
         <div className="flex flex-col gap-3">
-          <DndListComponent items={state.sections} dispatch={dispatch}>
+          <DndListComponent items={cv?.sections} dispatch={dispatch}>
             {(section) => renderSection(section)}
           </DndListComponent>
         </div>

@@ -6,6 +6,8 @@ import { generateDescriptionContent } from "@/app/lib/utils/generateBlanks";
 import LinkC from "@/app/components/LinkC/LinkC";
 import { RenderableSection } from "@/app/lib/utils/CVService.types";
 import { ActionType } from "@/app/components/Dnd/NestList/DndNestList.types";
+import { useDndContext } from "@dnd-kit/core";
+import ToolBar from "../ToolBar/Toolbar";
 
 interface EditItemProps {
   item: any;
@@ -23,7 +25,7 @@ const EditItem: React.FC<EditItemProps> = ({
   format = "MMM yyyy",
 }) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-
+  const { active } = useDndContext();
   const handleMouseEnter = () => setHoveredId(item.id);
   const handleMouseLeave = () => setHoveredId(null);
   const handleDelete = () => {
@@ -48,16 +50,12 @@ const EditItem: React.FC<EditItemProps> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="flex gap-2">
+        <div className="flex gap-1">
           {hoveredId === item.id && (
-            <Button
-              variant="danger"
-              size="none"
-              extraClasses="self-center px-1 text-sm"
-              onClick={handleDelete}
-            >
-              d
-            </Button>
+            <ToolBar
+              onDelete={handleDelete}
+              onAdd={() => handleAddDescContent(item.description.id)}
+            />
           )}
 
           <div>
@@ -90,23 +88,15 @@ const EditItem: React.FC<EditItemProps> = ({
           )}
         </div>
       </div>
-
-      <DescriptionEditLists
-        items={item.description}
-        dispatch={dispatch}
-        sectionId={section.id}
-        sections={sections}
-        itemId={item.id}
-      />
-
-      <Button
-        variant="primary"
-        size="none"
-        extraClasses="self-center px-1 text-sm"
-        onClick={() => handleAddDescContent(item.description.id)}
-      >
-        Add description content
-      </Button>
+      {!active && (
+        <DescriptionEditLists
+          items={item.description}
+          dispatch={dispatch}
+          sectionId={section.id}
+          sections={sections}
+          itemId={item.id}
+        />
+      )}
     </div>
   );
 };

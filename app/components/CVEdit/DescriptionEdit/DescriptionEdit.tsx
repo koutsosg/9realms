@@ -6,8 +6,8 @@ import {
   EducationSection,
   JobSection,
 } from "@/app/lib/utils/CVService.types";
-import { DescriptionListProps } from "./DescriptionEdit.types";
-import Button from "../../Button/Button";
+import { DescriptionListProps } from "@/app/components/CVEdit/DescriptionEdit/DescriptionEdit.types";
+import ToolBar from "@/app/components/CVEdit/ToolBar/Toolbar";
 
 const DescriptionEditList: React.FC<DescriptionListProps> = ({
   items,
@@ -112,14 +112,7 @@ const DescriptionEditList: React.FC<DescriptionListProps> = ({
           className="flex gap-2"
         >
           {hoveredDescId === desc.id && (
-            <Button
-              variant="danger"
-              size="none"
-              extraClasses="self-center px-1 text-sm"
-              onClick={() => handleDelete(itemId, desc.id)}
-            >
-              d
-            </Button>
+            <ToolBar onDelete={() => handleDelete(itemId, desc.id)} />
           )}
 
           {!items.bullets ? (

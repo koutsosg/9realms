@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SectionHeader from "@/app/components/CVPreview/SectionHeader/SectionHeader";
-import Button from "@/app/components/Button/Button";
 import { generateBlankItem } from "@/app/lib/utils/generateBlanks";
 import JobEditItem from "@/app/components/CVEdit/JobEditItem/JobEditItem";
 import EduEditItem from "@/app/components/CVEdit/EduEditItem/EduEditItem";
@@ -11,6 +10,8 @@ import {
   EducationSection,
   CertificationSection,
 } from "@/app/lib/utils/CVService.types";
+import { useDndContext } from "@dnd-kit/core";
+import ToolBar from "../ToolBar/Toolbar";
 
 interface SectionEditProps {
   section: RenderableSection;
@@ -40,7 +41,7 @@ const SectionEdit: React.FC<SectionEditProps> = ({
   sections,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const { active } = useDndContext();
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
@@ -67,7 +68,7 @@ const SectionEdit: React.FC<SectionEditProps> = ({
     if (isEducationSection(section)) {
       return (
         <EduEditItem
-          section={section} 
+          section={section}
           dispatch={dispatch}
           sections={sections}
         />
@@ -77,46 +78,30 @@ const SectionEdit: React.FC<SectionEditProps> = ({
     if (isCertificationSection(section)) {
       return (
         <CertEditItem
-          section={section} 
+          section={section}
           dispatch={dispatch}
           sections={sections}
         />
       );
     }
 
-    return null; 
+    return null;
   };
 
   return (
     <div className="flex flex-col gap-2">
       <div
-        className="flex w-full gap-2"
+        className="flex w-full gap-1"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {isHovered && (
-          <Button
-            variant="danger"
-            size="none"
-            extraClasses="self-start px-1 text-sm"
-            onClick={handleDelete}
-          >
-            d
-          </Button>
-        )}
+        {isHovered && <ToolBar onDelete={handleDelete} onAdd={handleAddItem} />}
         <SectionHeader title={section.title} />
       </div>
 
-      <div className="flex flex-col gap-3">{renderSectionContent()}</div>
-
-      <Button
-        variant="primary"
-        size="none"
-        extraClasses="px-1 text-sm"
-        onClick={handleAddItem}
-      >
-        Add experience
-      </Button>
+      {!active && (
+        <div className="flex flex-col gap-3">{renderSectionContent()}</div>
+      )}
     </div>
   );
 };

@@ -2,7 +2,12 @@ import React, { createContext, useContext } from "react";
 import { SimplifiedCVResponse } from "@/app/lib/utils/CVService.types";
 
 interface CVContextType {
-  state: SimplifiedCVResponse;
+  state: {
+    data: SimplifiedCVResponse;
+    modal: { open: boolean };
+    loading: boolean;
+    saving: boolean;
+  };
   dispatch: React.Dispatch<any>;
 }
 

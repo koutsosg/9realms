@@ -29,6 +29,7 @@ const SortableItem = ({
   activeId,
   isDragging,
   style,
+  handle,
 }: SortableItemProps) => {
   const { attributes, setNodeRef, transform, transition } = useSortable({
     id: itemId,
@@ -61,10 +62,11 @@ const SortableItem = ({
       className="relative cursor-default"
     >
       <div className="flex-grow">{content}</div>
-
-      <div className="absolute -right-4 top-0 transform">
-        <DragButton id={itemId} isDragging={isDragging} />
-      </div>
+      {handle && (
+        <div className="absolute -right-4 top-0 transform opacity-30 hover:opacity-100">
+          <DragButton id={itemId} isDragging={isDragging} />
+        </div>
+      )}
     </div>
   );
 };
@@ -76,7 +78,6 @@ const DndListComponent = <T extends { id: UniqueIdentifier }>({
 }: DndListComponentProps<T>) => {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-
   const contextId = useId();
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -110,6 +111,7 @@ const DndListComponent = <T extends { id: UniqueIdentifier }>({
     >
       <SortableContext items={items} strategy={verticalListSortingStrategy}>
         {items?.map((item) => {
+          const handle = items.length > 1;
           return (
             <SortableItem
               key={item?.id}
@@ -117,6 +119,7 @@ const DndListComponent = <T extends { id: UniqueIdentifier }>({
               content={children(item)}
               activeId={activeId}
               isDragging={isDragging}
+              handle={handle}
             />
           );
         })}

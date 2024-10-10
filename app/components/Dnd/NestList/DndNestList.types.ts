@@ -38,4 +38,5 @@ export interface SortableItemProps {
   activeId: UniqueIdentifier | null;
   isDragging: boolean;
   style?: React.CSSProperties;
+  handle?: boolean;
 }

@@ -8,7 +8,7 @@ const Home = async () => {
   const cv: SimplifiedCVResponse = await fetchCvData(); // Fetch the CV data directly
 
   return (
-    <CVProvider initialData={cv}>
+    <CVProvider CVData={cv}>
       {/* Pass the fetched CV data as initial context */}
       <div className="flex flex-col px-10 py-[200px]">
         <CVEdit />
