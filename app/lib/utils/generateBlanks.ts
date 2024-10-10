@@ -1,15 +1,15 @@
 import { RenderableSection } from "@/app/lib/utils/CVService.types";
+import { generateUUID } from "@/app/lib/utils/generateUUID";
 
 export const generateDescriptionContent = () => ({
   collectionId: "ijp29fg63v639me",
   collectionName: "description_content",
   content: ["Add description content"],
-  id: crypto.randomUUID(),
+  id: generateUUID(),
 });
-// Helper function to generate
 // Helper function to generate description
 export const generateDescription = () => ({
-  id: crypto.randomUUID(),
+  id: generateUUID(),
   bullets: false,
   collectionId: "4lsm2j2z412ydq3",
   collectionName: "descriptions",
@@ -20,7 +20,7 @@ export const generateDescription = () => ({
 export const generateBlankItem = (type: string) => {
   const itemTemplates: { [key: string]: () => any } = {
     job: () => ({
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       city: "add city name",
       company: "add company name",
       company_url: "add company url",
@@ -31,7 +31,7 @@ export const generateBlankItem = (type: string) => {
       position: "add position title",
     }),
     education: () => ({
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       city: "add city name",
       country: "add country name",
       date_end: "add education end date",
@@ -42,7 +42,7 @@ export const generateBlankItem = (type: string) => {
       institution: "Add institution name",
     }),
     certification: () => ({
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       course: "add course title",
       date_end: "add courses end date",
       institution: "Add courses institution name",
@@ -54,7 +54,7 @@ export const generateBlankItem = (type: string) => {
   // Note to self: Choose the default render
   return (
     itemTemplates[type]?.() || {
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       title: `New ${type} item`,
     }
   );
@@ -62,7 +62,7 @@ export const generateBlankItem = (type: string) => {
 
 // Function to generate common fields, with a default blank item in the data array
 export const generateBlankSection = (type: string): RenderableSection => ({
-  id: crypto.randomUUID(),
+  id: generateUUID(),
   title: `New ${type} section`,
   type: type,
   data: [generateBlankItem(type)], // Add one default blank item in the data

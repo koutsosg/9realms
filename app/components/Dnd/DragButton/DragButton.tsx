@@ -9,6 +9,7 @@ const DragButton = ({ id, isDragging }: any) => {
 
   return (
     <button
+      disabled={true}
       ref={setDraggableNodeRef}
       {...draggableAttributes}
       {...draggableListeners}

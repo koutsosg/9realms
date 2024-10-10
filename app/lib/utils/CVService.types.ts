@@ -190,7 +190,6 @@ export interface SimplifiedDescriptionContent {
   collectionName: string;
   content: string[];
   id: string;
-  updated: string;
 }
 
 export interface SimplifiedDescription {

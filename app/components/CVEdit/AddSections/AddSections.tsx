@@ -1,6 +1,6 @@
 import Button from "@/app/components/Button/Button";
 interface AddSectionsProps {
-  onAddSection: (type: string) => void; 
+  onAddSection: (type: string) => void;
 }
 const AddSections: React.FC<AddSectionsProps> = ({ onAddSection }) => {
   return (
@@ -10,7 +10,7 @@ const AddSections: React.FC<AddSectionsProps> = ({ onAddSection }) => {
         extraClasses="bg-green-500 text-white w-full px-2"
         onClick={() => onAddSection("job")}
       >
-        + Job Section
+        + Job
       </Button>
       <Button
         variant="none"
@@ -18,7 +18,7 @@ const AddSections: React.FC<AddSectionsProps> = ({ onAddSection }) => {
         extraClasses="bg-green-500 text-white w-full px-2"
         onClick={() => onAddSection("certification")}
       >
-        + Certification section
+        + Certification
       </Button>
       <Button
         variant="none"
@@ -26,7 +26,7 @@ const AddSections: React.FC<AddSectionsProps> = ({ onAddSection }) => {
         extraClasses="bg-green-500 text-white w-full px-2"
         onClick={() => onAddSection("education")}
       >
-        + education section
+        + education
       </Button>
     </div>
   );
