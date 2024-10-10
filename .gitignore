@@ -19,7 +19,11 @@
 # misc
 .DS_Store
 *.pem
-
+# db
+data.db-shm
+data.db-wal
+logs.db-shm
+logs.db-wal
 # debug
 npm-debug.log*
 yarn-debug.log*
